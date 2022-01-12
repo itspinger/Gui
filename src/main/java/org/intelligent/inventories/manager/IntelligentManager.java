@@ -1,15 +1,14 @@
 package org.intelligent.inventories.manager;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.intelligent.inventories.IntelligentInventory;
 
 import javax.annotation.Nonnull;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class IntelligentManager {
@@ -24,6 +23,33 @@ public class IntelligentManager {
         Objects.requireNonNull(plugin, "Plugin must not be null.");
         this.plugin = plugin;
     }
+
+    /**
+     * This method returns all players that currently have
+     * this specific inventory opened.
+     *
+     * @param inventory the inventory that is opened
+     * @return the players that have this inventory opened
+     */
+
+    public List<Player> getOpened(IntelligentInventory inventory) {
+        List<Player> players = Lists.newArrayList();
+
+        this.inventories.forEach((id, inv) -> {
+            if (!inv.equals(inventory)) {
+                return;
+            }
+
+            // Just a safe check
+            if (Bukkit.getPlayer(id) == null)
+                return;
+
+            players.add(Bukkit.getPlayer(id));
+        });
+
+        return players;
+    }
+
 
     /**
      * Returns the current inventory of this player, if it exists.
@@ -55,6 +81,18 @@ public class IntelligentManager {
     }
 
     /**
+     * Removes this player from the both inventories and the contents map.
+     * <p>
+     * This method should never be used unless you are absolutely sure what it does.
+     *
+     * @param p the player
+     */
+
+    public void removePlayer(Player p) {
+        this.inventories.remove(p.getUniqueId());
+    }
+
+    /**
      * Returns the plugin that is running this api.
      * This may never be null, since the plugin wouldn't start otherwise.
      *
@@ -62,6 +100,6 @@ public class IntelligentManager {
      */
 
     public JavaPlugin getPlugin() {
-        return plugin;
+        return this.plugin;
     }
 }

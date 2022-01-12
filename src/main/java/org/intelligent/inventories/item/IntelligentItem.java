@@ -42,7 +42,7 @@ public class IntelligentItem {
      * @return the instance
      */
 
-    public IntelligentItem createNew(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
+    public static IntelligentItem createNew(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
         return new IntelligentItem(item, event, drag);
     }
 
@@ -54,7 +54,7 @@ public class IntelligentItem {
      * @return the item
      */
 
-    public IntelligentItem createNew(ItemStack item, Consumer<InventoryClickEvent> event) {
+    public static IntelligentItem createNew(ItemStack item, Consumer<InventoryClickEvent> event) {
         return new IntelligentItem(item, event, false);
     }
 
@@ -65,7 +65,7 @@ public class IntelligentItem {
      * @return the item
      */
 
-    public IntelligentItem createNew(ItemStack item) {
+    public static IntelligentItem createNew(ItemStack item) {
         return new IntelligentItem(item, e -> {}, false);
     }
 
@@ -77,7 +77,7 @@ public class IntelligentItem {
      * @return the item
      */
 
-    public IntelligentItem createNew(ItemStack item, boolean drag) {
+    public static IntelligentItem createNew(ItemStack item, boolean drag) {
         return new IntelligentItem(item, e -> {}, drag);
     }
 
