@@ -7,6 +7,8 @@ import org.bukkit.inventory.Inventory;
 import org.intelligent.inventories.IntelligentInventory;
 import org.intelligent.inventories.contents.InventoryContents;
 import org.intelligent.inventories.contents.InventoryPagination;
+import org.intelligent.inventories.contents.InventorySlotIterator;
+import org.intelligent.inventories.contents.IteratorType;
 import org.intelligent.inventories.item.IntelligentItem;
 
 import java.util.Map;
@@ -19,7 +21,10 @@ public class IntelligentInventoryContents implements InventoryContents {
     private final IntelligentInventory inventory;
 
     private final Map<Object, Object> properties = Maps.newConcurrentMap();
+    private final Map<String, InventorySlotIterator> iterators = Maps.newConcurrentMap();
+
     private final IntelligentItem[][] items;
+    private final InventoryPagination pagination = new IntelligentInventoryPagination();
 
     public IntelligentInventoryContents(IntelligentInventory inventory, UUID id) {
         this.id = id;
@@ -34,12 +39,22 @@ public class IntelligentInventoryContents implements InventoryContents {
 
     @Override
     public InventoryPagination getPagination() {
-        return null;
+        return this.pagination;
     }
 
     @Override
     public IntelligentItem[][] getItems() {
         return this.items;
+    }
+
+    @Override
+    public InventorySlotIterator newIterator(String id, IteratorType type, int startRow, int startColumn) {
+        return this.iterators.put(id, new IntelligentSlotIterator(this.inventory, type, startRow, startColumn));
+    }
+
+    @Override
+    public InventorySlotIterator newIterator(IteratorType type, int startRow, int startColumn) {
+        return new IntelligentSlotIterator(this.inventory, type, startRow, startColumn);
     }
 
     @Override

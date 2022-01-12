@@ -69,8 +69,11 @@ public class IntelligentInventoryPagination implements InventoryPagination {
 
     @Override
     public InventoryPagination addToIterator(InventorySlotIterator iterator) {
-        for (IntelligentItem item : getPageItems()) {
+        for (IntelligentItem item : getItemsInPage()) {
+            iterator.next().setItem(item);
 
+            if (iterator.isLast())
+                break;
         }
 
         return this;

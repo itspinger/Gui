@@ -36,6 +36,29 @@ public interface InventoryContents {
     IntelligentItem[][] getItems();
 
     /**
+     * This method creates a new iterator with a custom id and saves it.
+     *
+     * @param id the id of the iterator
+     * @param type the iterator type
+     * @param startRow the start row
+     * @param startColumn the start column
+     * @return the iterator
+     */
+
+    InventorySlotIterator newIterator(String id, IteratorType type, int startRow, int startColumn);
+
+    /**
+     * This method creates a new iterator with the specified iterator type and starting position.
+     *
+     * @param type the iterator type
+     * @param startRow the start row
+     * @param startColumn the start column
+     * @return the iterator
+     */
+
+    InventorySlotIterator newIterator(IteratorType type, int startRow, int startColumn);
+
+    /**
      * Returns an item that is located in a specific row and column of the inventory.
      *
      * @param row the row
