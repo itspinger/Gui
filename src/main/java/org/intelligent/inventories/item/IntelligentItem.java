@@ -12,10 +12,10 @@ public class IntelligentItem {
     private final ItemStack item;
 
     // The event happening when the player clicks the item
-    private Consumer<InventoryClickEvent> click;
+    private final Consumer<InventoryClickEvent> click;
 
     // Whether a player may be to drag something to this slot, by default false.
-    private boolean drag;
+    private final boolean drag;
 
     /**
      * Creates a new instance of this class with the specified data.

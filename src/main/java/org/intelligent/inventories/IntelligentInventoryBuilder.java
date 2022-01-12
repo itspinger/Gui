@@ -54,6 +54,16 @@ public final class IntelligentInventoryBuilder {
         return this;
     }
 
+    public IntelligentInventoryBuilder setProvider(IntelligentProvider provider) {
+        this.provider = provider;
+        return this;
+    }
+
+    public IntelligentInventoryBuilder setManager(IntelligentManager manager) {
+        this.manager = manager;
+        return this;
+    }
+
     public IntelligentInventory build() {
         // Manager and provider must both be non-null
         IntelligentManager manager = this.manager == null ?

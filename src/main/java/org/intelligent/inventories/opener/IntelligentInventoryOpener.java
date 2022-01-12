@@ -36,7 +36,7 @@ public interface IntelligentInventoryOpener {
      */
 
     default void fill(Inventory handle, InventoryContents contents) {
-        IntelligentItem[][] items = contents.deepCopy();
+        IntelligentItem[][] items = contents.getItems();
 
         for(int row = 0; row < items.length; row++) {
             for(int column = 0; column < items[row].length; column++) {
