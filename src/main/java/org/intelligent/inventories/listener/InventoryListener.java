@@ -113,13 +113,14 @@ public class InventoryListener implements Listener {
                     return;
                 }
 
-                if (!item.isDrag()) {
-                    e.setCancelled(true);
+                if (item.isDrag()) {
+                    return;
                 }
 
+                e.setCancelled(true);
                 item.applyClick(e);
-                p.updateInventory();
             }
         });
+
     }
 }

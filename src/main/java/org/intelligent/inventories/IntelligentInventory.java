@@ -98,7 +98,7 @@ public class IntelligentInventory {
      */
 
     public void close(Player player) {
-        this.manager.setInventory(player, null);
+        this.manager.removePlayer(player);
         this.contents = null;
         player.closeInventory();
     }
