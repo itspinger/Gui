@@ -203,4 +203,14 @@ public class IntelligentInventory {
     public Optional<IntelligentInventory> getParent() {
         return Optional.ofNullable(this.parent);
     }
+
+    /**
+     * Changes the value of the closable
+     *
+     * @param closeable the closable
+     */
+
+    public void setCloseable(boolean closeable) {
+        this.closeable = closeable;
+    }
 }

@@ -178,6 +178,6 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
     }
 
     private boolean canPlace() {
-        return !isBlacklisted(row, column) && this.override && this.getItem().isPresent();
+        return !isBlacklisted(row, column) && (this.override || this.getItem().isPresent());
     }
 }
