@@ -1,5 +1,6 @@
 package org.intelligent.inventories;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -40,6 +41,9 @@ public class IntelligentInventory {
     // The contents of this inventory
     protected InventoryContents contents;
 
+    // The inventory that corresponds to this inventory
+    protected Inventory inventory;
+
     IntelligentInventory(IntelligentManager manager, IntelligentProvider provider) {
         this.manager = manager;
         this.provider = provider;
@@ -74,7 +78,7 @@ public class IntelligentInventory {
             Inventory inv = opener.open(player, this);
 
             this.manager.setInventory(player, this);
-            return inv;
+            return this.inventory = inv;
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to open the inventory for a player. ", e);
         }
@@ -212,5 +216,15 @@ public class IntelligentInventory {
 
     public void setCloseable(boolean closeable) {
         this.closeable = closeable;
+    }
+
+    /**
+     * Returns the inventory.
+     *
+     * @return the inventory
+     */
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

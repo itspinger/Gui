@@ -114,6 +114,7 @@ public class InventoryListener implements Listener {
                 }
 
                 if (item.isDrag()) {
+                    item.applyClick(e);
                     return;
                 }
 

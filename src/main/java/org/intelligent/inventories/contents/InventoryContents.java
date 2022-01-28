@@ -1,5 +1,6 @@
 package org.intelligent.inventories.contents;
 
+import org.bukkit.inventory.ItemStack;
 import org.intelligent.inventories.IntelligentInventory;
 import org.intelligent.inventories.item.IntelligentItem;
 
@@ -67,6 +68,25 @@ public interface InventoryContents {
      */
 
     Optional<IntelligentItem> getItem(int row, int column);
+
+    /**
+     * Returns the item stack that is currently found under this inventory.
+     *
+     * @param row the row
+     * @param column the column
+     * @return the item
+     */
+
+    Optional<ItemStack> getItemStack(int row, int column);
+
+    /**
+     * Returns the item stack that is currently found in this slot.
+     *
+     * @param slot the slot that we want to search
+     * @return the item
+     */
+
+    Optional<ItemStack> getItemStack(int slot);
 
     /**
      * Applies a new value of the {@link IntelligentItem} to a specific row and column.

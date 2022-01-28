@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.intelligent.inventories.IntelligentInventory;
 import org.intelligent.inventories.contents.InventoryContents;
 import org.intelligent.inventories.contents.InventoryPagination;
@@ -63,6 +64,16 @@ public class IntelligentInventoryContents implements InventoryContents {
             return Optional.empty();
 
         return Optional.ofNullable(this.items[row][column]);
+    }
+
+    @Override
+    public Optional<ItemStack> getItemStack(int row, int column) {
+        return Optional.ofNullable(this.inventory.getInventory().getItem(row * this.inventory.getColumns() + column));
+    }
+
+    @Override
+    public Optional<ItemStack> getItemStack(int slot) {
+        return Optional.ofNullable(this.inventory.getInventory().getItem(slot));
     }
 
     @Override
