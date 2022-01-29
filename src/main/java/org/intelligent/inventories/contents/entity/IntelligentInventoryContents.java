@@ -83,7 +83,7 @@ public class IntelligentInventoryContents implements InventoryContents {
         }
 
         this.items[row][column] = item;
-        this.update(row, column, item);
+        this.update(row, column, item != null ? item.getItem() : null);
     }
 
     @Override
@@ -137,16 +137,13 @@ public class IntelligentInventoryContents implements InventoryContents {
         return this.properties;
     }
 
-    private void update(int row, int column, IntelligentItem item) {
+    private void update(int row, int column, ItemStack item) {
         Player player = Bukkit.getPlayer(this.id);
-
-        if (player == null || item == null)
-            return;
 
         if (!this.inventory.getManager().getOpened(this.inventory).contains(player))
             return;
 
         Inventory topInventory = player.getOpenInventory().getTopInventory();
-        topInventory.setItem(this.inventory.getColumns() * row + column, item.getItem());
+        topInventory.setItem(this.inventory.getColumns() * row + column, item);
     }
 }
