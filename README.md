@@ -7,7 +7,7 @@ with the API provided by Spigot.
 
 With this library, you will be able to create custom GUIs' within seconds and use them in real-time.
 
-This plugin is inspired by SmartInventories and most of the code was rewritten from this [respository.](https://github.com/MinusKube/SmartInvs)
+This plugin is inspired by SmartInventories and most of the code was rewritten from this [repository.](https://github.com/MinusKube/SmartInvs)
 
 ## Getting Started
 To install this repository, you should follow the next steps:
