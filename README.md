@@ -13,7 +13,7 @@ This plugin is inspired by SmartInventories and most of the code was rewritten f
 To install this repository, you should follow the next steps:
 
 1. Clone this repository: `git clone https://github.com/ITSPINGER/IntelligentInventories.git`
-2. Enter into the directory: `cd IntelligentInventories`
+2. Enter into the directory folder: `cd IntelligentInventories`
 3. Build the project using Maven: `mvn clean install`
 
 After the project has finished building, you may now use the project in your projects.
