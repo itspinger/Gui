@@ -99,9 +99,6 @@ public class IntelligentManager {
      */
 
     public void ifInventoryPresent(Player p, Consumer<IntelligentInventory> inventory) {
-        if (!this.inventories.containsKey(p.getUniqueId()))
-            return;
-
         IntelligentInventory intelligentInventory = this.inventories.get(p.getUniqueId());
         if (intelligentInventory == null)
             return;

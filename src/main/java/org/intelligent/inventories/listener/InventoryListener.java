@@ -120,9 +120,6 @@ public class InventoryListener implements Listener {
 
                 e.setCancelled(true);
                 item.applyClick(e);
-
-                // Update the inventory
-                p.updateInventory();
             }
         });
 

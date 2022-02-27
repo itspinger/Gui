@@ -52,6 +52,35 @@ public class IntelligentInventory {
     /**
      * This method opens the specified page of the inventory to a player.
      *
+     * @param o the player object
+     * @param page the page
+     * @return the inventory
+     */
+
+    public Inventory open(Object o, int page) {
+        if (!(o instanceof Player))
+            throw new IllegalArgumentException("Inventories may only be opened to players.");
+
+        return this.open((Player) o, page);
+    }
+
+    /**
+     * This method opens the first page of the intelligent inventory to a player.
+     *
+     * @param o the player object
+     * @return the inventory
+     */
+
+    public Inventory open(Object o) {
+        if (!(o instanceof Player))
+            throw new IllegalArgumentException("Inventories may only be opened to players.");
+
+        return this.open((Player) o);
+    }
+
+    /**
+     * This method opens the specified page of the inventory to a player.
+     *
      * @param player the player
      * @return the inventory
      */
