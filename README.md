@@ -118,7 +118,7 @@ public class CarrotProvider implements IntelligentProvider {
             // Get the item at the certain position
             Optional<ItemStack> stack = contents.getItemStack(2, 4);
             
-            // It can be nullable, so we have to check for it
+            // It can be null, so we have to check for it
             if (!stack.isPresent())
                 return;
             
