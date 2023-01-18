@@ -41,7 +41,6 @@ Down below, we will be recreating this simple gui.
 
 ![GUI EXAMPLE](https://gyazo.com/109f9b14111cdddb2c672f1bab38aef3.gif)
 
-
 ## Creating the Inventory Manager
 The following class is an example of how you can create an inventory with the specified provider and use it.
 
