@@ -1,6 +1,6 @@
 package io.pnger.tally.provider;
 
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import org.bukkit.entity.Player;
 import io.pnger.tally.contents.InventoryContents;
 
@@ -16,7 +16,7 @@ public interface InventoryProvider {
     default void initialize(Player p, InventoryContents contents) {}
 
     /**
-     * This method is invoked every {@link IntelligentInventory#getUpdate()} ticks when the inventory is supposed to update.
+     * This method is invoked every {@link TallyInventory#getUpdate()} ticks when the inventory is supposed to update.
      * <p>
      * Note that this method is not necessary, unlike {@link #initialize(Player, InventoryContents)}.
      *

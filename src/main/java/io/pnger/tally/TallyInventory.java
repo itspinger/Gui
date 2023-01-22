@@ -5,45 +5,36 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import io.pnger.tally.contents.InventoryContents;
 import io.pnger.tally.contents.entity.IntelligentInventoryContents;
-import io.pnger.tally.manager.IntelligentManager;
+import io.pnger.tally.manager.InventoryManager;
 import io.pnger.tally.opener.IntelligentInventoryOpener;
 import io.pnger.tally.provider.InventoryProvider;
 
 import java.util.Optional;
 
-public class IntelligentInventory {
+public class TallyInventory {
 
-    // The title of this inventory
     protected String title;
-
-    // The inventory type of this inventory
     protected InventoryType type;
-
-    // Whether this inventory should be closeable
     protected boolean closeable;
-
-    // The number of rows and columns for this inventory
     protected int rows, columns;
-
-    // The update time
-    protected long update;
-
-    // The parent inventory of this inventory
-    protected IntelligentInventory parent;
-
-    // The inventory provider of this inventory
+    protected TallyInventory parent;
     protected final InventoryProvider provider;
-
-    // The intelligent manager of this inventory
-    protected final IntelligentManager manager;
-
-    // The contents of this inventory
+    protected final InventoryManager manager;
     protected InventoryContents contents;
-
-    // The inventory that corresponds to this inventory
     protected Inventory inventory;
 
-    IntelligentInventory(IntelligentManager manager, InventoryProvider provider) {
+    /**
+     * This constructor creates a new {@link TallyInventory} with the settings
+     * provided.
+     * <p>
+     * Each method below explains what it does briefly. For building inventories,
+     * use the {@link InventoryBuilder} class.
+     *
+     * @param manager the manager
+     * @param provider the provider for this inventory
+     */
+
+    TallyInventory(InventoryManager manager, InventoryProvider provider) {
         this.manager = manager;
         this.provider = provider;
     }
@@ -151,7 +142,7 @@ public class IntelligentInventory {
      * @return the manager
      */
 
-    public IntelligentManager getManager() {
+    public InventoryManager getManager() {
         return manager;
     }
 
@@ -187,16 +178,6 @@ public class IntelligentInventory {
     }
 
     /**
-     * Returns the update interval of this inventory.
-     *
-     * @return the update interval
-     */
-
-    public long getUpdate() {
-        return update;
-    }
-
-    /**
      * Returns the amount of columns of this inventory.
      *
      * @return the amount of columns
@@ -227,12 +208,12 @@ public class IntelligentInventory {
     }
 
     /**
-     * Returns the parent {@link IntelligentInventory} object of this inventory.
+     * Returns the parent {@link TallyInventory} object of this inventory.
      *
      * @return the parent inventory
      */
 
-    public Optional<IntelligentInventory> getParent() {
+    public Optional<TallyInventory> getParent() {
         return Optional.ofNullable(this.parent);
     }
 

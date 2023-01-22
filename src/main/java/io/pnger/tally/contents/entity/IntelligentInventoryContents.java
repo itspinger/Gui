@@ -1,7 +1,7 @@
 package io.pnger.tally.contents.entity;
 
 import com.google.common.collect.Maps;
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import io.pnger.tally.contents.InventoryContents;
 import io.pnger.tally.contents.InventoryPagination;
 import io.pnger.tally.contents.InventorySlotIterator;
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class IntelligentInventoryContents implements InventoryContents {
 
     private final UUID id;
-    private final IntelligentInventory inventory;
+    private final TallyInventory inventory;
 
     private final Map<Object, Object> properties = Maps.newConcurrentMap();
     private final Map<String, InventorySlotIterator> iterators = Maps.newConcurrentMap();
@@ -27,14 +27,14 @@ public class IntelligentInventoryContents implements InventoryContents {
     private final IntelligentItem[][] items;
     private final InventoryPagination pagination = new IntelligentInventoryPagination();
 
-    public IntelligentInventoryContents(IntelligentInventory inventory, UUID id) {
+    public IntelligentInventoryContents(TallyInventory inventory, UUID id) {
         this.id = id;
         this.inventory = inventory;
         this.items = new IntelligentItem[inventory.getRows()][inventory.getColumns()];
     }
 
     @Override
-    public IntelligentInventory getIntelligentInventory() {
+    public TallyInventory getIntelligentInventory() {
         return this.inventory;
     }
 

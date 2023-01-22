@@ -1,12 +1,12 @@
 package io.pnger.tally.contents;
 
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import io.pnger.tally.item.IntelligentItem;
 
 import java.util.Optional;
 
 /**
- * This interface is often used when we want to iterate through our {@link IntelligentInventory},
+ * This interface is often used when we want to iterate through our {@link TallyInventory},
  * and set a new {@link IntelligentItem} in certain positions.
  * <p>
  * A new addition to this class inserts a way to blacklist specific rows or columns.

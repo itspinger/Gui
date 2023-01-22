@@ -1,7 +1,7 @@
 package io.pnger.tally.listener;
 
 import io.pnger.tally.item.IntelligentItem;
-import io.pnger.tally.manager.IntelligentManager;
+import io.pnger.tally.manager.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,9 +16,9 @@ import java.util.HashMap;
 
 public class InventoryListener implements Listener {
 
-    private final IntelligentManager manager;
+    private final InventoryManager manager;
 
-    public InventoryListener(IntelligentManager manager) {
+    public InventoryListener(InventoryManager manager) {
         this.manager = manager;
     }
 

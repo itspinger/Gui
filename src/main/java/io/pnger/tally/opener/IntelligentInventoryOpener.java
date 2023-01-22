@@ -1,6 +1,6 @@
 package io.pnger.tally.opener;
 
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import io.pnger.tally.item.IntelligentItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -17,7 +17,7 @@ public interface IntelligentInventoryOpener {
      * @return the inventory that is being opened
      */
 
-    Inventory open(Player player, IntelligentInventory inventory);
+    Inventory open(Player player, TallyInventory inventory);
 
     /**
      * This method checks if a {@link InventoryType} type is supported within this opener.
