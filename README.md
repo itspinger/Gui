@@ -49,9 +49,9 @@ It is advised to keep all inventory objects in this kind of class.
 ```java
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.intelligent.inventories.IntelligentInventory;
-import org.intelligent.inventories.IntelligentInventoryBuilder;
-import org.intelligent.inventories.manager.IntelligentManager;
+import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.IntelligentInventoryBuilder;
+import manager.io.pnger.tally.IntelligentManager;
 
 public class ExampleInventoryManager {
 
@@ -61,16 +61,16 @@ public class ExampleInventoryManager {
         // Initialize the manager
         this.manager = new IntelligentManager(plugin);
     }
-    
+
     public IntelligentInventory getCarrotInventory() {
         return IntelligentInventoryBuilder.newBuilder()
-                .setManager(this.manager) // Remember to set the manager
-                .setProvider(new CarrotProvider()) // Required as well as the manager, this is your custom provider. This should be unique for each inventory
-                .setTitle(ChatColor.DARK_GRAY + "Carrot Transformer") // Set the title of the inventory
-                .setCloseable(true) // Set whether the inventory should be closable, default is true
-                .setSize(6, 9) // Set the size of the inventory
-                .setParent(null) // Set the parent of the inventory
-                .build();
+            .setManager(this.manager) // Remember to set the manager
+            .setProvider(new CarrotProvider()) // Required as well as the manager, this is your custom provider. This should be unique for each inventory
+            .setTitle(ChatColor.DARK_GRAY + "Carrot Transformer") // Set the title of the inventory
+            .setCloseable(true) // Set whether the inventory should be closable, default is true
+            .setSize(6, 9) // Set the size of the inventory
+            .setParent(null) // Set the parent of the inventory
+            .build();
     }
 }
 ```
@@ -82,13 +82,13 @@ In combination with the class above, you will be able to now use the custom gui.
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.intelligent.inventories.contents.InventoryContents;
-import org.intelligent.inventories.item.IntelligentItem;
-import org.intelligent.inventories.provider.IntelligentProvider;
+import contents.io.pnger.tally.InventoryContents;
+import item.io.pnger.tally.IntelligentItem;
+import provider.io.pnger.tally.InventoryProvider;
 
 import java.util.Optional;
 
-public class CarrotProvider implements IntelligentProvider {
+public class CarrotProvider implements InventoryProvider {
 
     @Override
     public void initialize(Player p, InventoryContents contents) {
@@ -116,14 +116,14 @@ public class CarrotProvider implements IntelligentProvider {
         IntelligentItem confirm = IntelligentItem.createNew(new ItemStack(Material.GREEN_SHULKER_BOX), e -> {
             // Get the item at the certain position
             Optional<ItemStack> stack = contents.getItemStack(2, 4);
-            
+
             // It can be null, so we have to check for it
             if (!stack.isPresent())
                 return;
-            
+
             contents.setItem(2, 4, IntelligentItem.createNew(new ItemStack(Material.CARROT)));
         });
-        
+
         // Add the confirm button to the bottom left of the inventory
         contents.setItem(4, 0, confirm);
     }
