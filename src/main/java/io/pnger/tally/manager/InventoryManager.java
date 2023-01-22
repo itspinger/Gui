@@ -19,6 +19,8 @@ import java.util.function.Consumer;
 
 public class InventoryManager {
 
+    public static final int UPDATE_INTERVAL = 1;
+
     // The plugin running this api
     private final JavaPlugin plugin;
 
@@ -50,7 +52,7 @@ public class InventoryManager {
                     }
                 });
             }
-        }.runTaskTimer(plugin, 1L, 1L);
+        }.runTaskTimer(plugin, 1L, InventoryManager.UPDATE_INTERVAL);
     }
 
     /**

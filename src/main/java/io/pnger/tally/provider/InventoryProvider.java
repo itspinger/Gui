@@ -1,29 +1,32 @@
 package io.pnger.tally.provider;
 
-import io.pnger.tally.TallyInventory;
-import org.bukkit.entity.Player;
 import io.pnger.tally.contents.InventoryContents;
+import io.pnger.tally.manager.InventoryManager;
+import org.bukkit.entity.Player;
 
 public interface InventoryProvider {
 
     /**
-     * This method is invoked when the inventory is firstly opened.
+     * This method is initializing method for an inventory. It is being executed
+     * right after the inventory has been opened for the player, so any
+     * important caches should go inside this method.
      *
-     * @param p the player
-     * @param contents the contents of the inventory
+     * @param player the player to open the inventory for
+     * @param contents the contents of the opened inventory
      */
 
-    default void initialize(Player p, InventoryContents contents) {}
+    default void initialize(Player player, InventoryContents contents) {}
 
     /**
-     * This method is invoked every {@link TallyInventory#getUpdate()} ticks when the inventory is supposed to update.
+     * This method is called every {@link InventoryManager#UPDATE_INTERVAL} ticks.
      * <p>
-     * Note that this method is not necessary, unlike {@link #initialize(Player, InventoryContents)}.
+     * Using this method is necessary when items are often being removed,
+     * added from the inventory.
      *
-     * @param p the player
-     * @param contents the contents of the inventory
+     * @param player the player
+     * @param contents the contents of the opened inventory
      */
 
-    default void update(Player p, InventoryContents contents) {}
+    default void update(Player player, InventoryContents contents) {}
 
 }
