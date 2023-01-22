@@ -1,6 +1,6 @@
 package io.pnger.tally.contents.entity;
 
-import io.pnger.tally.contents.InventorySlotIterator;
+import io.pnger.tally.slot.InventorySlotIterator;
 import io.pnger.tally.item.IntelligentItem;
 import io.pnger.tally.contents.InventoryPagination;
 

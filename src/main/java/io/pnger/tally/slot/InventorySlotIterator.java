@@ -1,4 +1,4 @@
-package io.pnger.tally.contents;
+package io.pnger.tally.slot;
 
 import io.pnger.tally.TallyInventory;
 import io.pnger.tally.item.IntelligentItem;
