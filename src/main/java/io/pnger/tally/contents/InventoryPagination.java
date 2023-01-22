@@ -2,6 +2,7 @@ package io.pnger.tally.contents;
 
 import io.pnger.tally.TallyInventory;
 import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.slot.InventorySlotIterator;
 
 public interface InventoryPagination {
 

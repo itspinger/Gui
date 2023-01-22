@@ -2,7 +2,7 @@ package io.pnger.tally.contents.entity;
 
 import com.google.common.collect.Lists;
 import io.pnger.tally.TallyInventory;
-import io.pnger.tally.contents.InventorySlotIterator;
+import io.pnger.tally.slot.InventorySlotIterator;
 import io.pnger.tally.contents.IteratorType;
 import io.pnger.tally.item.IntelligentItem;
 
