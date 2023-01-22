@@ -58,8 +58,7 @@ public class InventoryListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerQuit(PlayerQuitEvent e) {
-        this.manager.ifInventoryPresent(e.getPlayer(),
-                inv -> this.manager.removePlayer(e.getPlayer()));
+        this.manager.ifInventoryPresent(e.getPlayer(), inv -> this.manager.removePlayer(e.getPlayer()));
     }
 
 
