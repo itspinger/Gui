@@ -2,7 +2,7 @@ package io.pnger.tally.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -17,19 +17,19 @@ import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class IntelligentManager {
+public class InventoryManager {
 
-    // The plugin that is running this api
+    // The plugin running this api
     private final JavaPlugin plugin;
 
-    // Inventory of each player
-    private final Map<UUID, IntelligentInventory> inventories = Maps.newHashMap();
+    // We keep track of all inventories opened by players
+    private final Map<UUID, TallyInventory> inventories = Maps.newHashMap();
 
     // Openers
     private final List<IntelligentInventoryOpener> openers =
             Lists.newArrayList(new ChestInventoryOpener(), new SpecialInventoryOpener());
 
-    public IntelligentManager(@Nonnull JavaPlugin plugin) {
+    public InventoryManager(@Nonnull JavaPlugin plugin) {
         Objects.requireNonNull(plugin, "Plugin must not be null.");
         this.plugin = plugin;
 
@@ -61,7 +61,7 @@ public class IntelligentManager {
      * @return the players that have this inventory opened
      */
 
-    public List<Player> getOpened(IntelligentInventory inventory) {
+    public List<Player> getOpened(TallyInventory inventory) {
         List<Player> players = Lists.newArrayList();
 
         this.inventories.forEach((id, inv) -> {
@@ -87,7 +87,7 @@ public class IntelligentManager {
      * @return the current inventory
      */
 
-    public Optional<IntelligentInventory> getInventory(Player p) {
+    public Optional<TallyInventory> getInventory(Player p) {
         return Optional.ofNullable(this.inventories.get(p.getUniqueId()));
     }
 
@@ -98,8 +98,8 @@ public class IntelligentManager {
      * @param inventory the inventory consumer
      */
 
-    public void ifInventoryPresent(Player p, Consumer<IntelligentInventory> inventory) {
-        IntelligentInventory intelligentInventory = this.inventories.get(p.getUniqueId());
+    public void ifInventoryPresent(Player p, Consumer<TallyInventory> inventory) {
+        TallyInventory intelligentInventory = this.inventories.get(p.getUniqueId());
         if (intelligentInventory == null)
             return;
 
@@ -126,7 +126,7 @@ public class IntelligentManager {
      * @param inventory the inventory
      */
 
-    public void setInventory(Player player, IntelligentInventory inventory) {
+    public void setInventory(Player player, TallyInventory inventory) {
         this.inventories.put(player.getUniqueId(), inventory);
     }
 
@@ -159,7 +159,7 @@ public class IntelligentManager {
      * @return the inventories
      */
 
-    public Map<UUID, IntelligentInventory> getInventories() {
+    public Map<UUID, TallyInventory> getInventories() {
         return inventories;
     }
 }

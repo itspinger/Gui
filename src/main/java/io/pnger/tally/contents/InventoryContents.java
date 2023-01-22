@@ -1,6 +1,6 @@
 package io.pnger.tally.contents;
 
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import io.pnger.tally.item.IntelligentItem;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,14 +10,14 @@ import java.util.Optional;
 public interface InventoryContents {
 
     /**
-     * Returns an instance of {@link IntelligentInventory} that corresponds to this instance.
+     * Returns an instance of {@link TallyInventory} that corresponds to this instance.
      * <p>
      * This value may never be null.
      *
      * @return the intelligent inventory
      */
 
-    IntelligentInventory getIntelligentInventory();
+    TallyInventory getIntelligentInventory();
 
     /**
      * Returns the current pagination instance, which can then be changed

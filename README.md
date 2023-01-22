@@ -47,10 +47,10 @@ The following class is an example of how you can create an inventory with the sp
 It is advised to keep all inventory objects in this kind of class.
 
 ```java
+import io.pnger.tally.TallyInventory;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import io.pnger.tally.IntelligentInventory;
-import io.pnger.tally.IntelligentInventoryBuilder;
+import io.pnger.tally.InventoryBuilder;
 import manager.io.pnger.tally.IntelligentManager;
 
 public class ExampleInventoryManager {
@@ -62,14 +62,14 @@ public class ExampleInventoryManager {
         this.manager = new IntelligentManager(plugin);
     }
 
-    public IntelligentInventory getCarrotInventory() {
-        return IntelligentInventoryBuilder.newBuilder()
-            .setManager(this.manager) // Remember to set the manager
-            .setProvider(new CarrotProvider()) // Required as well as the manager, this is your custom provider. This should be unique for each inventory
-            .setTitle(ChatColor.DARK_GRAY + "Carrot Transformer") // Set the title of the inventory
-            .setCloseable(true) // Set whether the inventory should be closable, default is true
-            .setSize(6, 9) // Set the size of the inventory
-            .setParent(null) // Set the parent of the inventory
+    public TallyInventory getCarrotInventory() {
+        return InventoryBuilder.newBuilder()
+            .manager(this.manager) // Remember to set the manager
+            .provider(new CarrotProvider()) // Required as well as the manager, this is your custom provider. This should be unique for each inventory
+            .title(ChatColor.DARK_GRAY + "Carrot Transformer") // Set the title of the inventory
+            .closeable(true) // Set whether the inventory should be closable, default is true
+            .size(6, 9) // Set the size of the inventory
+            .parent(null) // Set the parent of the inventory
             .build();
     }
 }

@@ -1,7 +1,7 @@
 package io.pnger.tally.contents.entity;
 
 import com.google.common.collect.Lists;
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import io.pnger.tally.contents.InventorySlotIterator;
 import io.pnger.tally.contents.IteratorType;
 import io.pnger.tally.item.IntelligentItem;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class IntelligentSlotIterator implements InventorySlotIterator {
 
-    private final IntelligentInventory inventory;
+    private final TallyInventory inventory;
     private final IteratorType type;
 
     private int row, column;
@@ -20,14 +20,14 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
 
     private final List<AbstractMap.SimpleEntry<Integer, Integer>> blacklisted = Lists.newArrayList();
 
-    public IntelligentSlotIterator(IntelligentInventory inventory, IteratorType type, int row, int column) {
+    public IntelligentSlotIterator(TallyInventory inventory, IteratorType type, int row, int column) {
         this.inventory = inventory;
         this.type = type;
         this.row = row;
         this.column = column;
     }
 
-    public IntelligentSlotIterator(IntelligentInventory inventory, IteratorType type) {
+    public IntelligentSlotIterator(TallyInventory inventory, IteratorType type) {
         this(inventory, type, 0, 0);
     }
 

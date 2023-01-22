@@ -1,7 +1,7 @@
 package io.pnger.tally.opener;
 
 import com.google.common.base.Preconditions;
-import io.pnger.tally.IntelligentInventory;
+import io.pnger.tally.TallyInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.Inventory;
 public class ChestInventoryOpener implements IntelligentInventoryOpener {
 
     @Override
-    public Inventory open(Player player, IntelligentInventory inventory) {
+    public Inventory open(Player player, TallyInventory inventory) {
         Preconditions.checkArgument(
             inventory.getColumns() == 9,
             "The number of columns for %s type must be 9",
