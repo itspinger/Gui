@@ -3,6 +3,8 @@ package io.pnger.gui.item;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import io.pnger.gui.GuiInventory;
+
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -12,10 +14,10 @@ public class GuiItem {
     private final ItemStack item;
 
     // The event happening when the player clicks the item
-    private final Consumer<InventoryClickEvent> click;
+    private Consumer<InventoryClickEvent> click;
 
     // Whether a player may be to drag something to this slot, by default false.
-    private final boolean drag;
+    private boolean drag;
 
     /**
      * Creates a new instance of this class with the specified data.
@@ -102,8 +104,30 @@ public class GuiItem {
     }
 
     /**
-     * Whether players will be allowed to drag this item from a
-     * {@link io.pnger.gui.GuiInventory} inventory.
+     * This method sets the {@link Consumer<InventoryClickEvent> click handler} that is called
+     * when this item gets clicked.
+     *
+     * @param click the click handler
+     */
+
+    public void setClickHandler(Consumer<InventoryClickEvent> click) {
+        this.click = click;
+    }
+
+    /**
+     * This method sets whether players will be allowed to drag this item from a
+     * {@link GuiInventory} inventory.
+     *
+     * @param drag whether the drag will be enabled
+     */
+
+    public void setDrag(boolean drag) {
+        this.drag = drag;
+    }
+
+    /**
+     * This method returns whether players will be allowed to drag this item
+     * from a {@link GuiInventory} inventory.
      *
      * @return whether dragging is allowed for this item
      */
