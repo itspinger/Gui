@@ -47,10 +47,11 @@ The following class is an example of how you can create an inventory with the sp
 It is advised to keep all inventory objects in this kind of class.
 
 ```java
+import io.pnger.tally.GuiBuilder;
+import io.pnger.tally.GuiInventory;
 import io.pnger.tally.TallyInventory;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import io.pnger.tally.InventoryBuilder;
 import manager.io.pnger.tally.IntelligentManager;
 
 public class ExampleInventoryManager {
@@ -62,8 +63,8 @@ public class ExampleInventoryManager {
         this.manager = new IntelligentManager(plugin);
     }
 
-    public TallyInventory getCarrotInventory() {
-        return InventoryBuilder.newBuilder()
+    public GuiInventory getCarrotInventory() {
+        return GuiBuilder.newBuilder()
             .manager(this.manager) // Remember to set the manager
             .provider(new CarrotProvider()) // Required as well as the manager, this is your custom provider. This should be unique for each inventory
             .title(ChatColor.DARK_GRAY + "Carrot Transformer") // Set the title of the inventory

@@ -1,24 +1,54 @@
 package io.pnger.tally.contents;
 
-import io.pnger.tally.TallyInventory;
+import io.pnger.tally.GuiInventory;
 import io.pnger.tally.item.IntelligentItem;
 import io.pnger.tally.slot.InventorySlotIterator;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.Optional;
+
+/**
+ * This type holds all contents of a {@link GuiInventory}.
+ * <p>
+ * When updating items in the inventory, creating new {@link InventorySlotIterator iterators}, or
+ * assigning property to a provider, this interface should be used.
+ * <p>
+ * This interface is persistent over every inventory, meaning that it's
+ * persistent for every player.
+ */
 
 public interface InventoryContents {
 
     /**
-     * Returns an instance of {@link TallyInventory} that corresponds to this instance.
+     * This method returns the inventory that this content
+     * is persistent for.
      * <p>
-     * This value may never be null.
+     * If you need a {@link Inventory bukkit inventory} instead,
+     * you can use the {@link #getBukkitInventory()} method.
      *
-     * @return the intelligent inventory
+     * @return the inventory
      */
 
-    TallyInventory getIntelligentInventory();
+    @Nonnull
+    GuiInventory getInventory();
+
+    /**
+     * This method returns the {@link Inventory bukkit inventory} created when
+     * the {@link GuiInventory} has been opened by the user.
+     * <p>
+     * The user of this method should not worry about this method returning null,
+     * because this interface is only accessible once the inventory has been
+     * opened and not before.
+     *
+     * @return the bukkit inventory
+     */
+
+    default Inventory getBukkitInventory() {
+        return getInventory().getInventory();
+    }
 
     /**
      * Returns the current pagination instance, which can then be changed
