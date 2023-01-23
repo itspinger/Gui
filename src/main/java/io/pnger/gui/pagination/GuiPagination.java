@@ -46,6 +46,19 @@ public interface GuiPagination {
     GuiPagination setItems(int itemsPerPage, GuiItem... items);
 
     /**
+     * This method sets items that wil be paginated through this pagination
+     * handler, without specifying the items per page. The default items per page
+     * will be set for the user automatically, which is 36 by default.
+     *
+     * @param items the items to paginate
+     * @return this pagination
+     */
+
+    default GuiPagination setItems(GuiItem... items) {
+        return this.setItems(36, items);
+    }
+
+    /**
      * This method switches the page of this pagination.
      * <p>
      * Do note that by calling this method as of 1-23-2023, it
