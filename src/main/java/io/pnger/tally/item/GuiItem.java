@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class IntelligentItem {
+public class GuiItem {
 
     // The item that is handling the event
     private final ItemStack item;
@@ -25,7 +25,7 @@ public class IntelligentItem {
      * @param drag whether we can do drag items on and off from this item, useful for trading plugins and such.
      */
 
-    private IntelligentItem(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
+    private GuiItem(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
         Objects.requireNonNull(item, "The ItemStack being set may not be null");
 
         this.item = item;
@@ -42,8 +42,8 @@ public class IntelligentItem {
      * @return the instance
      */
 
-    public static IntelligentItem createNew(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
-        return new IntelligentItem(item, event, drag);
+    public static GuiItem newItem(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
+        return new GuiItem(item, event, drag);
     }
 
     /**
@@ -54,8 +54,8 @@ public class IntelligentItem {
      * @return the item
      */
 
-    public static IntelligentItem createNew(ItemStack item, Consumer<InventoryClickEvent> event) {
-        return new IntelligentItem(item, event, false);
+    public static GuiItem newItem(ItemStack item, Consumer<InventoryClickEvent> event) {
+        return new GuiItem(item, event, false);
     }
 
     /**
@@ -65,8 +65,8 @@ public class IntelligentItem {
      * @return the item
      */
 
-    public static IntelligentItem createNew(ItemStack item) {
-        return new IntelligentItem(item, e -> {}, false);
+    public static GuiItem newItem(ItemStack item) {
+        return new GuiItem(item, e -> {}, false);
     }
 
     /**
@@ -77,8 +77,8 @@ public class IntelligentItem {
      * @return the item
      */
 
-    public static IntelligentItem createNew(ItemStack item, boolean drag) {
-        return new IntelligentItem(item, e -> {}, drag);
+    public static GuiItem newItem(ItemStack item, boolean drag) {
+        return new GuiItem(item, e -> {}, drag);
     }
 
     /**

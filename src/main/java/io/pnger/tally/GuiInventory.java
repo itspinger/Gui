@@ -3,7 +3,7 @@ package io.pnger.tally;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import io.pnger.tally.contents.InventoryContents;
+import io.pnger.tally.contents.GuiContents;
 import io.pnger.tally.contents.entity.IntelligentInventoryContents;
 import io.pnger.tally.manager.InventoryManager;
 import io.pnger.tally.opener.IntelligentInventoryOpener;
@@ -20,7 +20,7 @@ public class GuiInventory {
     protected GuiInventory parent;
     protected final InventoryProvider provider;
     protected final InventoryManager manager;
-    protected InventoryContents contents;
+    protected GuiContents contents;
     protected Inventory inventory;
 
     /**
@@ -79,7 +79,7 @@ public class GuiInventory {
         // First close the old inventory
         this.close(player);
 
-        InventoryContents contents = new IntelligentInventoryContents(this, player.getUniqueId());
+        GuiContents contents = new IntelligentInventoryContents(this, player.getUniqueId());
         contents.getPagination().setPage(page);
 
         // Assign it
@@ -148,7 +148,7 @@ public class GuiInventory {
 
     /**
      * This method returns the provider that is responsible for the connection
-     * between the inventory and the {@link InventoryContents} object.
+     * between the inventory and the {@link GuiContents} object.
      *
      * @return the provider
      */
@@ -203,7 +203,7 @@ public class GuiInventory {
      * @return the contents object
      */
 
-    public InventoryContents getContents() {
+    public GuiContents getContents() {
         return contents;
     }
 

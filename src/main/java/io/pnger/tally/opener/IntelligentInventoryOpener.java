@@ -1,11 +1,11 @@
 package io.pnger.tally.opener;
 
 import io.pnger.tally.GuiInventory;
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import io.pnger.tally.contents.InventoryContents;
+import io.pnger.tally.contents.GuiContents;
 
 public interface IntelligentInventoryOpener {
 
@@ -29,14 +29,14 @@ public interface IntelligentInventoryOpener {
     boolean isSupported(InventoryType type);
 
     /**
-     * This method is used to fill an inventory with the contents that are defined inside the {@link InventoryContents} object.
+     * This method is used to fill an inventory with the contents that are defined inside the {@link GuiContents} object.
      *
      * @param handle the inventory that is being filled up
      * @param contents the contents of the inventory
      */
 
-    default void fill(Inventory handle, InventoryContents contents) {
-        IntelligentItem[][] items = contents.getItems();
+    default void fill(Inventory handle, GuiContents contents) {
+        GuiItem[][] items = contents.getItems();
 
         for(int row = 0; row < items.length; row++) {
             for(int column = 0; column < items[row].length; column++) {

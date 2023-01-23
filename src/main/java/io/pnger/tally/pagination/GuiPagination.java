@@ -1,10 +1,10 @@
-package io.pnger.tally.contents;
+package io.pnger.tally.pagination;
 
 import io.pnger.tally.GuiInventory;
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
 import io.pnger.tally.slot.InventorySlotIterator;
 
-public interface InventoryPagination {
+public interface GuiPagination {
 
     /**
      * Returns an array of items that are currently in this page.
@@ -12,7 +12,7 @@ public interface InventoryPagination {
      * @return the page
      */
 
-    IntelligentItem[] getItemsInPage();
+    GuiItem[] getItemsInPage();
 
     /**
      * This method is used to set the new pagination of the {@link GuiInventory}.
@@ -21,7 +21,7 @@ public interface InventoryPagination {
      * @return the pagination
      */
 
-    InventoryPagination setPage(int page);
+    GuiPagination setPage(int page);
 
     /**
      * Returns the current page a viewer is on.
@@ -57,7 +57,7 @@ public interface InventoryPagination {
      * @return the first page
      */
 
-    InventoryPagination firstPage();
+    GuiPagination firstPage();
 
     /**
      * This method sets the current page to the last page of the pagination.
@@ -65,7 +65,7 @@ public interface InventoryPagination {
      * @return the last page
      */
 
-    InventoryPagination lastPage();
+    GuiPagination lastPage();
 
     /**
      * This method decreases the current pagination by 1, if possible.
@@ -73,7 +73,7 @@ public interface InventoryPagination {
      * @return the pagination
      */
 
-    InventoryPagination previousPage();
+    GuiPagination previousPage();
 
     /**
      * This method increases the current pagination by 1, if possible.
@@ -81,7 +81,7 @@ public interface InventoryPagination {
      * @return the pagination
      */
 
-    InventoryPagination nextPage();
+    GuiPagination nextPage();
 
     /**
      * This method adds all items from {@link #getItemsInPage()} to the appropriate
@@ -91,7 +91,7 @@ public interface InventoryPagination {
      * @return the inventory pagination
      */
 
-    InventoryPagination addToIterator(InventorySlotIterator iterator);
+    GuiPagination addToIterator(InventorySlotIterator iterator);
 
     /**
      * This method sets all items that are cached within all paginations.
@@ -100,16 +100,16 @@ public interface InventoryPagination {
      * @return the pagination
      */
 
-    InventoryPagination setItems(IntelligentItem... items);
+    GuiPagination setItems(GuiItem... items);
 
     /**
-     * Set how many of items set in the method {@link #setItems(IntelligentItem...)} will be cached per page.
+     * Set how many of items set in the method {@link #setItems(GuiItem...)} will be cached per page.
      *
      * @param itemsPerPage the number of items
      * @return the pagination
      */
 
-    InventoryPagination setItemsPerPage(int itemsPerPage);
+    GuiPagination setItemsPerPage(int itemsPerPage);
 
 
 

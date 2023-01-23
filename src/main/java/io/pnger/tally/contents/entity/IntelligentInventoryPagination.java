@@ -1,24 +1,24 @@
 package io.pnger.tally.contents.entity;
 
 import io.pnger.tally.slot.InventorySlotIterator;
-import io.pnger.tally.item.IntelligentItem;
-import io.pnger.tally.contents.InventoryPagination;
+import io.pnger.tally.item.GuiItem;
+import io.pnger.tally.pagination.GuiPagination;
 
 import java.util.Arrays;
 
-public class IntelligentInventoryPagination implements InventoryPagination {
+public class IntelligentInventoryPagination implements GuiPagination {
 
     private int currentPage;
     private int itemsPerPage = 5;
-    private IntelligentItem[] items = new IntelligentItem[0];
+    private GuiItem[] items = new GuiItem[0];
 
     @Override
-    public IntelligentItem[] getItemsInPage() {
+    public GuiItem[] getItemsInPage() {
         return Arrays.copyOfRange(this.items, this.currentPage * this.itemsPerPage, (this.currentPage + 1) * this.itemsPerPage);
     }
 
     @Override
-    public InventoryPagination setPage(int page) {
+    public GuiPagination setPage(int page) {
         this.currentPage = page;
         return this;
     }
@@ -40,19 +40,19 @@ public class IntelligentInventoryPagination implements InventoryPagination {
     }
 
     @Override
-    public InventoryPagination firstPage() {
+    public GuiPagination firstPage() {
         this.currentPage = 0;
         return this;
     }
 
     @Override
-    public InventoryPagination lastPage() {
+    public GuiPagination lastPage() {
         this.currentPage = this.items.length / this.itemsPerPage;
         return this;
     }
 
     @Override
-    public InventoryPagination previousPage() {
+    public GuiPagination previousPage() {
         if (!isFirst())
             this.currentPage--;
 
@@ -60,7 +60,7 @@ public class IntelligentInventoryPagination implements InventoryPagination {
     }
 
     @Override
-    public InventoryPagination nextPage() {
+    public GuiPagination nextPage() {
         if (!isLast())
             this.currentPage++;
 
@@ -68,8 +68,8 @@ public class IntelligentInventoryPagination implements InventoryPagination {
     }
 
     @Override
-    public InventoryPagination addToIterator(InventorySlotIterator iterator) {
-        for (IntelligentItem item : getItemsInPage()) {
+    public GuiPagination addToIterator(InventorySlotIterator iterator) {
+        for (GuiItem item : getItemsInPage()) {
             iterator.next().setItem(item);
 
             if (iterator.isLast())
@@ -80,13 +80,13 @@ public class IntelligentInventoryPagination implements InventoryPagination {
     }
 
     @Override
-    public InventoryPagination setItems(IntelligentItem... items) {
+    public GuiPagination setItems(GuiItem... items) {
         this.items = items;
         return this;
     }
 
     @Override
-    public InventoryPagination setItemsPerPage(int itemsPerPage) {
+    public GuiPagination setItemsPerPage(int itemsPerPage) {
         if (itemsPerPage == 0)
             return this;
 

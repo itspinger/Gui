@@ -1,6 +1,6 @@
 package io.pnger.tally.provider;
 
-import io.pnger.tally.contents.InventoryContents;
+import io.pnger.tally.contents.GuiContents;
 import io.pnger.tally.manager.InventoryManager;
 import org.bukkit.entity.Player;
 
@@ -15,7 +15,7 @@ public interface InventoryProvider {
      * @param contents the contents of the opened inventory
      */
 
-    default void initialize(Player player, InventoryContents contents) {}
+    default void initialize(Player player, GuiContents contents) {}
 
     /**
      * This method is called every {@link InventoryManager#UPDATE_INTERVAL} ticks.
@@ -27,6 +27,6 @@ public interface InventoryProvider {
      * @param contents the contents of the opened inventory
      */
 
-    default void update(Player player, InventoryContents contents) {}
+    default void update(Player player, GuiContents contents) {}
 
 }
