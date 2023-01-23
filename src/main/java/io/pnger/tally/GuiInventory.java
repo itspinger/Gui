@@ -11,30 +11,30 @@ import io.pnger.tally.provider.InventoryProvider;
 
 import java.util.Optional;
 
-public class TallyInventory {
+public class GuiInventory {
 
     protected String title;
     protected InventoryType type;
     protected boolean closeable;
     protected int rows, columns;
-    protected TallyInventory parent;
+    protected GuiInventory parent;
     protected final InventoryProvider provider;
     protected final InventoryManager manager;
     protected InventoryContents contents;
     protected Inventory inventory;
 
     /**
-     * This constructor creates a new {@link TallyInventory} with the settings
+     * This constructor creates a new {@link GuiInventory} with the settings
      * provided.
      * <p>
      * Each method below explains what it does briefly. For building inventories,
-     * use the {@link InventoryBuilder} class.
+     * use the {@link GuiBuilder} class.
      *
      * @param manager the manager
      * @param provider the provider for this inventory
      */
 
-    TallyInventory(InventoryManager manager, InventoryProvider provider) {
+    GuiInventory(InventoryManager manager, InventoryProvider provider) {
         this.manager = manager;
         this.provider = provider;
     }
@@ -208,12 +208,12 @@ public class TallyInventory {
     }
 
     /**
-     * Returns the parent {@link TallyInventory} object of this inventory.
+     * Returns the parent {@link GuiInventory} object of this inventory.
      *
      * @return the parent inventory
      */
 
-    public Optional<TallyInventory> getParent() {
+    public Optional<GuiInventory> getParent() {
         return Optional.ofNullable(this.parent);
     }
 

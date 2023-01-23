@@ -1,6 +1,6 @@
 package io.pnger.tally.contents;
 
-import io.pnger.tally.TallyInventory;
+import io.pnger.tally.GuiInventory;
 import io.pnger.tally.item.IntelligentItem;
 import io.pnger.tally.slot.InventorySlotIterator;
 
@@ -15,7 +15,7 @@ public interface InventoryPagination {
     IntelligentItem[] getItemsInPage();
 
     /**
-     * This method is used to set the new pagination of the {@link TallyInventory}.
+     * This method is used to set the new pagination of the {@link GuiInventory}.
      *
      * @param page the page
      * @return the pagination

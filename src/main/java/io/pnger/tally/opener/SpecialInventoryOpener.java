@@ -1,7 +1,7 @@
 package io.pnger.tally.opener;
 
 import com.google.common.collect.ImmutableList;
-import io.pnger.tally.TallyInventory;
+import io.pnger.tally.GuiInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -24,7 +24,7 @@ public class SpecialInventoryOpener implements IntelligentInventoryOpener {
     );
 
     @Override
-    public Inventory open(Player player, TallyInventory inventory) {
+    public Inventory open(Player player, GuiInventory inventory) {
         Inventory handle = Bukkit.createInventory(player, inventory.getType(), inventory.getTitle());
         this.fill(handle, inventory.getContents());
         player.openInventory(handle);

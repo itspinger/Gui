@@ -3,7 +3,7 @@ package io.pnger.tally;
 import io.pnger.tally.manager.InventoryManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class TallyPlugin extends JavaPlugin {
+public class GuiPlugin extends JavaPlugin {
 
     private InventoryManager intelligentManager;
 

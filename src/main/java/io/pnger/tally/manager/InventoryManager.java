@@ -2,7 +2,7 @@ package io.pnger.tally.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.pnger.tally.TallyInventory;
+import io.pnger.tally.GuiInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -25,7 +25,7 @@ public class InventoryManager {
     private final JavaPlugin plugin;
 
     // We keep track of all inventories opened by players
-    private final Map<UUID, TallyInventory> inventories = Maps.newHashMap();
+    private final Map<UUID, GuiInventory> inventories = Maps.newHashMap();
 
     // Openers
     private final List<IntelligentInventoryOpener> openers =
@@ -63,7 +63,7 @@ public class InventoryManager {
      * @return the players that have this inventory opened
      */
 
-    public List<Player> getOpened(TallyInventory inventory) {
+    public List<Player> getOpened(GuiInventory inventory) {
         List<Player> players = Lists.newArrayList();
 
         this.inventories.forEach((id, inv) -> {
@@ -89,7 +89,7 @@ public class InventoryManager {
      * @return the current inventory
      */
 
-    public Optional<TallyInventory> getInventory(Player p) {
+    public Optional<GuiInventory> getInventory(Player p) {
         return Optional.ofNullable(this.inventories.get(p.getUniqueId()));
     }
 
@@ -100,8 +100,8 @@ public class InventoryManager {
      * @param inventory the inventory consumer
      */
 
-    public void ifInventoryPresent(Player p, Consumer<TallyInventory> inventory) {
-        TallyInventory intelligentInventory = this.inventories.get(p.getUniqueId());
+    public void ifInventoryPresent(Player p, Consumer<GuiInventory> inventory) {
+        GuiInventory intelligentInventory = this.inventories.get(p.getUniqueId());
         if (intelligentInventory == null)
             return;
 
@@ -128,7 +128,7 @@ public class InventoryManager {
      * @param inventory the inventory
      */
 
-    public void setInventory(Player player, TallyInventory inventory) {
+    public void setInventory(Player player, GuiInventory inventory) {
         this.inventories.put(player.getUniqueId(), inventory);
     }
 
@@ -161,7 +161,7 @@ public class InventoryManager {
      * @return the inventories
      */
 
-    public Map<UUID, TallyInventory> getInventories() {
+    public Map<UUID, GuiInventory> getInventories() {
         return inventories;
     }
 }

@@ -5,62 +5,62 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.pnger.tally.manager.InventoryManager;
 import io.pnger.tally.provider.InventoryProvider;
 
-public final class InventoryBuilder {
+public final class GuiBuilder {
 
     private String title = "";
     private InventoryType type = InventoryType.CHEST;
     private boolean closeable = true;
     private int rows = 6, columns = 9;
-    private TallyInventory parent;
+    private GuiInventory parent;
 
     private InventoryProvider provider = null;
     private InventoryManager manager = null;
 
-    private InventoryBuilder() {}
+    private GuiBuilder() {}
 
-    public static InventoryBuilder newBuilder() {
-        return new InventoryBuilder();
+    public static GuiBuilder newBuilder() {
+        return new GuiBuilder();
     }
 
-    public InventoryBuilder title(String title) {
+    public GuiBuilder title(String title) {
         this.title = title;
         return this;
     }
 
-    public InventoryBuilder type(InventoryType type) {
+    public GuiBuilder type(InventoryType type) {
         this.type = type;
         return this;
     }
 
-    public InventoryBuilder closeable(boolean closeable) {
+    public GuiBuilder closeable(boolean closeable) {
         this.closeable = closeable;
         return this;
     }
 
-    public InventoryBuilder size(int rows, int columns) {
+    public GuiBuilder size(int rows, int columns) {
         this.rows = rows; this.columns = columns;
         return this;
     }
 
-    public InventoryBuilder parent(TallyInventory parent) {
+    public GuiBuilder parent(GuiInventory parent) {
         this.parent = parent;
         return this;
     }
 
-    public InventoryBuilder provider(InventoryProvider provider) {
+    public GuiBuilder provider(InventoryProvider provider) {
         this.provider = provider;
         return this;
     }
 
-    public InventoryBuilder manager(InventoryManager manager) {
+    public GuiBuilder manager(InventoryManager manager) {
         this.manager = manager;
         return this;
     }
 
-    public TallyInventory build() {
+    public GuiInventory build() {
         // Manager and provider must both be non-null
         InventoryManager manager = this.manager == null ?
-                JavaPlugin.getPlugin(TallyPlugin.class).getIntelligentManager() : this.manager;
+                JavaPlugin.getPlugin(GuiPlugin.class).getIntelligentManager() : this.manager;
 
         if (manager == null)
             throw new IllegalArgumentException("The InventoryManager may not be null, make sure to initialize it");
@@ -68,7 +68,7 @@ public final class InventoryBuilder {
         if (this.provider == null)
             throw new IllegalArgumentException("The IntelligentProvider has not been set.");
 
-        TallyInventory inv = new TallyInventory(this.manager, this.provider);
+        GuiInventory inv = new GuiInventory(this.manager, this.provider);
 
         // Set the contents
         inv.closeable = this.closeable;

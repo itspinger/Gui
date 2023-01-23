@@ -1,6 +1,5 @@
 package io.pnger.tally.slot;
 
-import io.pnger.tally.TallyInventory;
 import io.pnger.tally.item.IntelligentItem;
 
 import java.util.Optional;
@@ -12,6 +11,11 @@ import java.util.Optional;
  * A new addition to this class inserts a way to blacklist specific rows or columns.
  *
  * @since 1.0.0
+ */
+
+/**
+ * Type used for
+ *
  */
 
 public interface InventorySlotIterator {
