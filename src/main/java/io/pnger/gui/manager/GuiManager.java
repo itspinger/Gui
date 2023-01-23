@@ -2,13 +2,14 @@ package io.pnger.gui.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.pnger.gui.GuiInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import io.pnger.gui.listener.InventoryListener;
+
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.listener.GuiListener;
 import io.pnger.gui.opener.ChestInventoryOpener;
 import io.pnger.gui.opener.IntelligentInventoryOpener;
 import io.pnger.gui.opener.SpecialInventoryOpener;
@@ -17,34 +18,32 @@ import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class InventoryManager {
+public class GuiManager {
 
     public static final int UPDATE_INTERVAL = 1;
 
-    // The plugin running this api
     private final JavaPlugin plugin;
-
-    // We keep track of all inventories opened by players
     private final Map<UUID, GuiInventory> inventories = Maps.newHashMap();
 
     // Openers
     private final List<IntelligentInventoryOpener> openers =
             Lists.newArrayList(new ChestInventoryOpener(), new SpecialInventoryOpener());
 
-    public InventoryManager(@Nonnull JavaPlugin plugin) {
+    public GuiManager(@Nonnull JavaPlugin plugin) {
         Objects.requireNonNull(plugin, "Plugin must not be null.");
         this.plugin = plugin;
 
         // Register the event
-        Bukkit.getPluginManager().registerEvents(new InventoryListener(this), plugin);
+        Bukkit.getPluginManager().registerEvents(new GuiListener(this), plugin);
 
         // Update every inventory
         new BukkitRunnable() {
             @Override
             public void run() {
-                new HashMap<>(inventories).forEach((id, inv) -> {
+                new HashMap<>(GuiManager.this.inventories).forEach((id, inv) -> {
                     Player p = Bukkit.getPlayer(id);
 
+                    // Update the inventory for the specified player
                     try {
                         inv.getProvider().update(p, inv.getContents());
                     } catch (Exception e) {
@@ -52,7 +51,7 @@ public class InventoryManager {
                     }
                 });
             }
-        }.runTaskTimer(plugin, 1L, InventoryManager.UPDATE_INTERVAL);
+        }.runTaskTimer(plugin, 1L, GuiManager.UPDATE_INTERVAL);
     }
 
     /**
@@ -100,12 +99,8 @@ public class InventoryManager {
      * @param inventory the inventory consumer
      */
 
-    public void ifInventoryPresent(Player p, Consumer<GuiInventory> inventory) {
-        GuiInventory intelligentInventory = this.inventories.get(p.getUniqueId());
-        if (intelligentInventory == null)
-            return;
-
-        inventory.accept(intelligentInventory);
+    public void handleInventory(Player p, Consumer<GuiInventory> inventory) {
+        this.getInventory(p).ifPresent(inventory);
     }
 
     /**

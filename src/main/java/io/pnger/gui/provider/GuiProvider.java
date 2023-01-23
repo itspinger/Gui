@@ -1,7 +1,7 @@
 package io.pnger.gui.provider;
 
 import io.pnger.gui.contents.GuiContents;
-import io.pnger.gui.manager.InventoryManager;
+import io.pnger.gui.manager.GuiManager;
 import org.bukkit.entity.Player;
 
 public interface GuiProvider {
@@ -18,7 +18,7 @@ public interface GuiProvider {
     default void initialize(Player player, GuiContents contents) {}
 
     /**
-     * This method is called every {@link InventoryManager#UPDATE_INTERVAL} ticks.
+     * This method is called every {@link GuiManager#UPDATE_INTERVAL} ticks.
      * <p>
      * Using this method is necessary when items are often being removed,
      * added from the inventory.
