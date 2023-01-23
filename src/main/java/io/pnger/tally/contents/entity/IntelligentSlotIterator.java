@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import io.pnger.tally.GuiInventory;
 import io.pnger.tally.slot.InventorySlotIterator;
 import io.pnger.tally.contents.IteratorType;
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -52,12 +52,12 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
     }
 
     @Override
-    public Optional<IntelligentItem> getItem() {
+    public Optional<GuiItem> getItem() {
         return this.inventory.getContents().getItem(row, column);
     }
 
     @Override
-    public InventorySlotIterator setItem(IntelligentItem item) {
+    public InventorySlotIterator setItem(GuiItem item) {
         if (!canPlace())
             return this;
 

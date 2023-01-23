@@ -2,11 +2,11 @@ package io.pnger.tally.contents.entity;
 
 import com.google.common.collect.Maps;
 import io.pnger.tally.GuiInventory;
-import io.pnger.tally.contents.InventoryContents;
-import io.pnger.tally.contents.InventoryPagination;
+import io.pnger.tally.contents.GuiContents;
+import io.pnger.tally.pagination.GuiPagination;
 import io.pnger.tally.slot.InventorySlotIterator;
 import io.pnger.tally.contents.IteratorType;
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public class IntelligentInventoryContents implements InventoryContents {
+public class IntelligentInventoryContents implements GuiContents {
 
     private final UUID id;
     private final GuiInventory inventory;
@@ -24,13 +24,13 @@ public class IntelligentInventoryContents implements InventoryContents {
     private final Map<Object, Object> properties = Maps.newConcurrentMap();
     private final Map<String, InventorySlotIterator> iterators = Maps.newConcurrentMap();
 
-    private final IntelligentItem[][] items;
-    private final InventoryPagination pagination = new IntelligentInventoryPagination();
+    private final GuiItem[][] items;
+    private final GuiPagination pagination = new IntelligentInventoryPagination();
 
     public IntelligentInventoryContents(GuiInventory inventory, UUID id) {
         this.id = id;
         this.inventory = inventory;
-        this.items = new IntelligentItem[inventory.getRows()][inventory.getColumns()];
+        this.items = new GuiItem[inventory.getRows()][inventory.getColumns()];
     }
 
     @Override
@@ -39,12 +39,12 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public InventoryPagination getPagination() {
+    public GuiPagination getPagination() {
         return this.pagination;
     }
 
     @Override
-    public IntelligentItem[][] getItems() {
+    public GuiItem[][] getItems() {
         return this.items;
     }
 
@@ -59,7 +59,7 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public Optional<IntelligentItem> getItem(int row, int column) {
+    public Optional<GuiItem> getItem(int row, int column) {
         if (row >= this.items.length || column >= this.items[row].length)
             return Optional.empty();
 
@@ -77,7 +77,7 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public void setItem(int row, int column, IntelligentItem item) {
+    public void setItem(int row, int column, GuiItem item) {
         if (row >= this.items.length || column >= this.items[row].length) {
             return;
         }
@@ -87,7 +87,7 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public void addItem(IntelligentItem item) {
+    public void addItem(GuiItem item) {
         for (int row = 0; row < this.items.length; row++) {
             for (int column = 0; column < this.items[row].length; column++) {
                 if (this.items[row][column] == null) {
@@ -98,7 +98,7 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public void fill(IntelligentItem item) {
+    public void fill(GuiItem item) {
         for (int row = 0; row < this.items.length; row++) {
             for (int column = 0; column < this.items[row].length; column++) {
                 this.setItem(row, column, item);
@@ -107,7 +107,7 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public void fillRow(int row, IntelligentItem item) {
+    public void fillRow(int row, GuiItem item) {
         if (row >= items.length)
             return;
 
@@ -116,7 +116,7 @@ public class IntelligentInventoryContents implements InventoryContents {
     }
 
     @Override
-    public void fillColumn(int column, IntelligentItem item) {
+    public void fillColumn(int column, GuiItem item) {
         for (int row = 0; row < this.items.length; row++) {
             this.setItem(row, column, item);
         }

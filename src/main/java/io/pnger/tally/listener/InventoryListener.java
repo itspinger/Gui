@@ -1,6 +1,6 @@
 package io.pnger.tally.listener;
 
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
 import io.pnger.tally.manager.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -109,7 +109,7 @@ public class InventoryListener implements Listener {
                     return;
                 }
 
-                IntelligentItem item = inv.getContents().getItem(row, column).orElse(null);
+                GuiItem item = inv.getContents().getItem(row, column).orElse(null);
 
                 if (item == null) {
                     e.setCancelled(true);

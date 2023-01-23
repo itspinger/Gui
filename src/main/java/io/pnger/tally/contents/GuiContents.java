@@ -1,7 +1,8 @@
 package io.pnger.tally.contents;
 
 import io.pnger.tally.GuiInventory;
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
+import io.pnger.tally.pagination.GuiPagination;
 import io.pnger.tally.slot.InventorySlotIterator;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -20,7 +21,7 @@ import java.util.Optional;
  * persistent for every player.
  */
 
-public interface InventoryContents {
+public interface GuiContents {
 
     /**
      * This method returns the inventory that this content
@@ -57,7 +58,7 @@ public interface InventoryContents {
      * @return the pagination
      */
 
-    InventoryPagination getPagination();
+    GuiPagination getPagination();
 
     /**
      * Returns a deep copy of all items that are contained in this inventory.
@@ -65,7 +66,7 @@ public interface InventoryContents {
      * @return copy of items
      */
 
-    IntelligentItem[][] getItems();
+    GuiItem[][] getItems();
 
     /**
      * This method creates a new iterator with a custom id and saves it.
@@ -98,7 +99,7 @@ public interface InventoryContents {
      * @return the item
      */
 
-    Optional<IntelligentItem> getItem(int row, int column);
+    Optional<GuiItem> getItem(int row, int column);
 
     /**
      * Returns the item stack that is currently found under this inventory.
@@ -120,22 +121,22 @@ public interface InventoryContents {
     Optional<ItemStack> getItemStack(int slot);
 
     /**
-     * Applies a new value of the {@link IntelligentItem} to a specific row and column.
+     * Applies a new value of the {@link GuiItem} to a specific row and column.
      *
      * @param row the row
      * @param column the column
      * @param item the item
      */
 
-    void setItem(int row, int column, IntelligentItem item);
+    void setItem(int row, int column, GuiItem item);
 
     /**
-     * Adds the {@link IntelligentItem} to the last unused spot of the inventory.
+     * Adds the {@link GuiItem} to the last unused spot of the inventory.
      *
      * @param item the item
      */
 
-    void addItem(IntelligentItem item);
+    void addItem(GuiItem item);
 
     /**
      * This method fills the entire inventory with the item specified in the arguments.
@@ -145,7 +146,7 @@ public interface InventoryContents {
      * @param item the item
      */
 
-    void fill(IntelligentItem item);
+    void fill(GuiItem item);
 
     /**
      * This method fills an entire row with a specific item.
@@ -153,7 +154,7 @@ public interface InventoryContents {
      * @param item the item
      */
 
-    void fillRow(int row, IntelligentItem item);
+    void fillRow(int row, GuiItem item);
 
     /**
      * This method fills a specific column with a specific item.
@@ -162,7 +163,7 @@ public interface InventoryContents {
      * @param item the item to fill with
      */
 
-    void fillColumn(int column, IntelligentItem item);
+    void fillColumn(int column, GuiItem item);
 
     /**
      * This method returns a property value that is connected to the key.

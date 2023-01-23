@@ -1,6 +1,6 @@
 package io.pnger.tally.slot;
 
-import io.pnger.tally.item.IntelligentItem;
+import io.pnger.tally.item.GuiItem;
 
 import java.util.Optional;
 
@@ -61,7 +61,7 @@ public interface InventorySlotIterator {
      * @return the item
      */
 
-    Optional<IntelligentItem> getItem();
+    Optional<GuiItem> getItem();
 
     /**
      * This method sets an item to a current row and column position.
@@ -70,7 +70,7 @@ public interface InventorySlotIterator {
      * @return the slot iterator
      */
 
-    InventorySlotIterator setItem(IntelligentItem item);
+    InventorySlotIterator setItem(GuiItem item);
 
     /**
      * This method increases the iterator by one.
