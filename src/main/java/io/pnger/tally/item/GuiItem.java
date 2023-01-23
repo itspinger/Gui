@@ -102,9 +102,10 @@ public class GuiItem {
     }
 
     /**
-     * Returns whether the drag is enabled for this item.
+     * Whether players will be allowed to drag this item from a
+     * {@link io.pnger.tally.GuiInventory} inventory.
      *
-     * @return whether the drag is enabled
+     * @return whether dragging is allowed for this item
      */
 
     public boolean isDrag() {

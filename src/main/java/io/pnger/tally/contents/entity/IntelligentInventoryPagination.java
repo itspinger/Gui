@@ -40,19 +40,19 @@ public class IntelligentInventoryPagination implements GuiPagination {
     }
 
     @Override
-    public GuiPagination firstPage() {
+    public GuiPagination getFirstPage() {
         this.currentPage = 0;
         return this;
     }
 
     @Override
-    public GuiPagination lastPage() {
+    public GuiPagination getLastPage() {
         this.currentPage = this.items.length / this.itemsPerPage;
         return this;
     }
 
     @Override
-    public GuiPagination previousPage() {
+    public GuiPagination previous() {
         if (!isFirst())
             this.currentPage--;
 
@@ -60,7 +60,7 @@ public class IntelligentInventoryPagination implements GuiPagination {
     }
 
     @Override
-    public GuiPagination nextPage() {
+    public GuiPagination next() {
         if (!isLast())
             this.currentPage++;
 

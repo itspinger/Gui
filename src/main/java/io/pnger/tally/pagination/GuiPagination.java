@@ -1,30 +1,70 @@
 package io.pnger.tally.pagination;
 
-import io.pnger.tally.GuiInventory;
+import io.pnger.tally.contents.GuiContents;
 import io.pnger.tally.item.GuiItem;
 import io.pnger.tally.slot.InventorySlotIterator;
+
+/**
+ * This type is used for placing x amount of items in an inventory,
+ * which usually exceeds the amount of items you can put in a single gui.
+ * <p>
+ * This interface handles all stuff mentioned above. The methods to look for are:
+ * <ul>
+ *     <li>{@link #setItems(int, GuiItem...)} - which will add all items to the pagination handle, and where you limit how many of these you want per page</li>
+ *     <li>{@link #addToIterator(InventorySlotIterator)} - to set from which slot this iterator will start</li>
+ * </ul>
+ *
+ * @since 2.0
+ */
 
 public interface GuiPagination {
 
     /**
-     * Returns an array of items that are currently in this page.
+     * This method adds the items set using the {@link #setItems(int, GuiItem...)} method
+     * to an iterator.
+     * <p>
+     * This is often used for when we want to start paginating from a different slot,
+     * not necessarily the first item (with index (0, 0)). Use the {@link GuiContents type}
+     * to easily create iterators.
      *
-     * @return the page
+     * @param iterator the iterator to set
+     * @return this pagination
      */
 
-    GuiItem[] getItemsInPage();
+    GuiPagination addToIterator(InventorySlotIterator iterator);
 
     /**
-     * This method is used to set the new pagination of the {@link GuiInventory}.
+     * This method sets items that will be paginated through this pagination
+     * handler, alongside with how many of these items should be displayed
+     * per page.
      *
-     * @param page the page
-     * @return the pagination
+     * @param itemsPerPage how many items to display per page
+     * @param items the items to paginate
+     * @return this pagination
+     */
+
+    GuiPagination setItems(int itemsPerPage, GuiItem... items);
+
+    /**
+     * This method switches the page of this pagination.
+     * <p>
+     * Do note that by calling this method as of 1-23-2023, it
+     * will not manually update the page for you. It is in plans that
+     * when you call this method it automatically refills your inventory,
+     * rather than opening it every time, but as of now, it's not working.
+     *
+     * @param page the page to set
+     * @return this pagination
      */
 
     GuiPagination setPage(int page);
 
     /**
-     * Returns the current page a viewer is on.
+     * This method returns the page that is currently set
+     * within this handler.
+     * <p>
+     * To compare it to the start or the end of the pagination,
+     * use the {@link #isFirst()} or {@link #isLast()} methods.
      *
      * @return the current page
      */
@@ -32,85 +72,97 @@ public interface GuiPagination {
     int getPage();
 
     /**
-     * Returns whether the pagination is the first.
+     * This method returns the amount of pages that are created
+     * for this pagination.
      * <p>
-     * If an inventory only has 1 page, then this is still true.
+     * This is automatically refreshed when the {@link #setItems(int, GuiItem...)}
+     * is called.
      *
-     * @return if it's the first
+     * @return the amount of pages
+     */
+
+    int getPages();
+
+    /**
+     * This method returns whether the current page is
+     * currently equal to the first page of the pagination.
+     *
+     * @return whether it is the first page
      */
 
     boolean isFirst();
 
     /**
-     * Returns whether the pagination is the last.
+     * This method returns whether the current page is the last page.
      * <p>
-     * If an inventory only has 1 page, then this is still true.
+     * When it's the last page, calling {@link #next()} will have no
+     * effect on this pagination.
      *
-     * @return if it's the last
+     * @return whether it is the last page
      */
 
     boolean isLast();
 
     /**
-     * This method sets the current page to the first page, if not already at first.
+     * This method toggles the current page, by setting the handler to the
+     * first page in the pagination.
+     * <p>
+     * If the pagination is already on the first page, calling
+     * this will have no effect on the gui.
      *
-     * @return the first page
+     * @return this pagination
      */
 
-    GuiPagination firstPage();
+    GuiPagination first();
 
     /**
-     * This method sets the current page to the last page of the pagination.
+     * This method toggles the current page, by setting the handler to the
+     * last page in the pagination.
+     * <p>
+     * If the pagination is already on the last page, calling
+     * this will have no effect on the gui.
      *
-     * @return the last page
+     * @return this pagination
      */
 
-    GuiPagination lastPage();
+    GuiPagination last();
 
     /**
-     * This method decreases the current pagination by 1, if possible.
+     * This method toggles the current page, by switching to the previous page
+     * of the gui, if possible.
+     * <p>
+     * This is often needed when having to toggle between pages, by using
+     * previous and next buttons, where each click will either go to the previous
+     * or the next page, assuming conditions are met.
      *
-     * @return the pagination
+     * @return this pagination
      */
 
-    GuiPagination previousPage();
+    GuiPagination previous();
 
     /**
-     * This method increases the current pagination by 1, if possible.
+     * This method toggles the current page, by switching to the next page
+     * of the gui, if possible.
+     * <p>
+     * This if often used for having to toggle between pages, by using
+     * the previous and next buttons, where each click will either go the previous
+     * or the next page, assuming specific conditions are met.
      *
-     * @return the pagination
+     * @return this pagination
      */
 
-    GuiPagination nextPage();
+    GuiPagination next();
 
     /**
-     * This method adds all items from {@link #getItemsInPage()} to the appropriate
-     * {@link InventorySlotIterator} provided in the arguments.
+     * This method returns all items in the current page.
+     * <p>
+     * It is possible that this method returns null, if the {@link #setItems(int, GuiItem...)}
+     * has not been used, or the item parameters are null, or the itemsPerPage parameter
+     * is set to 0.
      *
-     * @param iterator the iterator
-     * @return the inventory pagination
+     * @return the items per in this page
      */
 
-    GuiPagination addToIterator(InventorySlotIterator iterator);
-
-    /**
-     * This method sets all items that are cached within all paginations.
-     *
-     * @param items the items
-     * @return the pagination
-     */
-
-    GuiPagination setItems(GuiItem... items);
-
-    /**
-     * Set how many of items set in the method {@link #setItems(GuiItem...)} will be cached per page.
-     *
-     * @param itemsPerPage the number of items
-     * @return the pagination
-     */
-
-    GuiPagination setItemsPerPage(int itemsPerPage);
-
-
+    GuiItem[] getItemsInPage();
 
 }
