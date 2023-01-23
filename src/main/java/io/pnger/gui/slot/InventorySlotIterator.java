@@ -1,6 +1,6 @@
-package io.pnger.tally.slot;
+package io.pnger.gui.slot;
 
-import io.pnger.tally.item.GuiItem;
+import io.pnger.gui.item.GuiItem;
 
 import java.util.Optional;
 

@@ -1,8 +1,8 @@
-package io.pnger.tally.contents.entity;
+package io.pnger.gui.contents.entity;
 
-import io.pnger.tally.slot.InventorySlotIterator;
-import io.pnger.tally.item.GuiItem;
-import io.pnger.tally.pagination.GuiPagination;
+import io.pnger.gui.slot.InventorySlotIterator;
+import io.pnger.gui.item.GuiItem;
+import io.pnger.gui.pagination.GuiPagination;
 
 import java.util.Arrays;
 

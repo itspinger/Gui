@@ -1,12 +1,12 @@
-package io.pnger.tally.contents.entity;
+package io.pnger.gui.contents.entity;
 
 import com.google.common.collect.Maps;
-import io.pnger.tally.GuiInventory;
-import io.pnger.tally.contents.GuiContents;
-import io.pnger.tally.pagination.GuiPagination;
-import io.pnger.tally.slot.InventorySlotIterator;
-import io.pnger.tally.contents.IteratorType;
-import io.pnger.tally.item.GuiItem;
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.contents.GuiContents;
+import io.pnger.gui.pagination.GuiPagination;
+import io.pnger.gui.slot.InventorySlotIterator;
+import io.pnger.gui.contents.IteratorType;
+import io.pnger.gui.item.GuiItem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;

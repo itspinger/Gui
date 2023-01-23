@@ -1,8 +1,8 @@
-package io.pnger.tally.pagination;
+package io.pnger.gui.pagination;
 
-import io.pnger.tally.contents.GuiContents;
-import io.pnger.tally.item.GuiItem;
-import io.pnger.tally.slot.InventorySlotIterator;
+import io.pnger.gui.contents.GuiContents;
+import io.pnger.gui.item.GuiItem;
+import io.pnger.gui.slot.InventorySlotIterator;
 
 /**
  * This type is used for placing x amount of items in an inventory,

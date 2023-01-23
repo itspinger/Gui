@@ -1,4 +1,4 @@
-package io.pnger.tally.item;
+package io.pnger.gui.item;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -103,7 +103,7 @@ public class GuiItem {
 
     /**
      * Whether players will be allowed to drag this item from a
-     * {@link io.pnger.tally.GuiInventory} inventory.
+     * {@link io.pnger.gui.GuiInventory} inventory.
      *
      * @return whether dragging is allowed for this item
      */

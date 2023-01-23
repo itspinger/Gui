@@ -1,7 +1,7 @@
-package io.pnger.tally.listener;
+package io.pnger.gui.listener;
 
-import io.pnger.tally.item.GuiItem;
-import io.pnger.tally.manager.InventoryManager;
+import io.pnger.gui.item.GuiItem;
+import io.pnger.gui.manager.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

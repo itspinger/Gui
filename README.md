@@ -47,12 +47,12 @@ The following class is an example of how you can create an inventory with the sp
 It is advised to keep all inventory objects in this kind of class.
 
 ```java
-import io.pnger.tally.GuiBuilder;
-import io.pnger.tally.GuiInventory;
-import io.pnger.tally.TallyInventory;
+import io.pnger.gui.GuiBuilder;
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.TallyInventory;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import manager.io.pnger.tally.IntelligentManager;
+import manager.io.pnger.gui.IntelligentManager;
 
 public class ExampleInventoryManager {
 
@@ -83,9 +83,9 @@ In combination with the class above, you will be able to now use the custom gui.
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import contents.io.pnger.tally.InventoryContents;
-import item.io.pnger.tally.IntelligentItem;
-import provider.io.pnger.tally.InventoryProvider;
+import contents.io.pnger.gui.InventoryContents;
+import item.io.pnger.gui.IntelligentItem;
+import provider.io.pnger.gui.InventoryProvider;
 
 import java.util.Optional;
 

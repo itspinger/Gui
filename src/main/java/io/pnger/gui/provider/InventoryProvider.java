@@ -1,7 +1,7 @@
-package io.pnger.tally.provider;
+package io.pnger.gui.provider;
 
-import io.pnger.tally.contents.GuiContents;
-import io.pnger.tally.manager.InventoryManager;
+import io.pnger.gui.contents.GuiContents;
+import io.pnger.gui.manager.InventoryManager;
 import org.bukkit.entity.Player;
 
 public interface InventoryProvider {

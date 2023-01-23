@@ -1,4 +1,4 @@
-package io.pnger.tally.contents;
+package io.pnger.gui.contents;
 
 public enum IteratorType {
 

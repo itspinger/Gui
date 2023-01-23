@@ -1,17 +1,17 @@
-package io.pnger.tally.manager;
+package io.pnger.gui.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.pnger.tally.GuiInventory;
+import io.pnger.gui.GuiInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import io.pnger.tally.listener.InventoryListener;
-import io.pnger.tally.opener.ChestInventoryOpener;
-import io.pnger.tally.opener.IntelligentInventoryOpener;
-import io.pnger.tally.opener.SpecialInventoryOpener;
+import io.pnger.gui.listener.InventoryListener;
+import io.pnger.gui.opener.ChestInventoryOpener;
+import io.pnger.gui.opener.IntelligentInventoryOpener;
+import io.pnger.gui.opener.SpecialInventoryOpener;
 
 import javax.annotation.Nonnull;
 import java.util.*;
