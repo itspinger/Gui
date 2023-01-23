@@ -20,6 +20,10 @@ public class GuiPaginationImpl implements GuiPagination {
 
     @Override
     public GuiPagination setItems(int itemsPerPage, GuiItem... items) {
+        if (itemsPerPage == 0) {
+            throw new IllegalArgumentException("Cannot set itemsPerPage to 0");
+        }
+
         this.itemsPerPage = itemsPerPage;
         this.items = items;
         return this;

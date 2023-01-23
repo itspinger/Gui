@@ -4,7 +4,7 @@ import io.pnger.gui.contents.GuiContents;
 import io.pnger.gui.manager.InventoryManager;
 import org.bukkit.entity.Player;
 
-public interface InventoryProvider {
+public interface GuiProvider {
 
     /**
      * This method is initializing method for an inventory. It is being executed
