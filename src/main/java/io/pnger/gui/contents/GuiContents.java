@@ -24,6 +24,15 @@ import java.util.Optional;
 public interface GuiContents {
 
     /**
+     * This method returns a matrix, od 2-dimensional array of all {@link GuiItem}
+     * or contents assigned for this inventory.
+     *
+     * @return the items
+     */
+
+    GuiItem[][] getItems();
+
+    /**
      * This method returns the inventory that this content
      * is persistent for.
      * <p>
@@ -52,21 +61,17 @@ public interface GuiContents {
     }
 
     /**
-     * Returns the current pagination instance, which can then be changed
-     * within the instance itself.
+     * This method returns a {@link GuiPagination pagination} instance created
+     * for this content holder.
+     * <p>
+     * Use pagination for handling multiple pages, with different items set
+     * per page. For more information about the pagination type, visit the
+     * {@link GuiPagination} page.
      *
      * @return the pagination
      */
 
     GuiPagination getPagination();
-
-    /**
-     * Returns a deep copy of all items that are contained in this inventory.
-     *
-     * @return copy of items
-     */
-
-    GuiItem[][] getItems();
 
     /**
      * This method creates a new iterator with a custom id and saves it.
@@ -92,36 +97,40 @@ public interface GuiContents {
     InventorySlotIterator newIterator(IteratorType type, int startRow, int startColumn);
 
     /**
-     * Returns an item that is located in a specific row and column of the inventory.
+     * This method returns a {@link GuiItem} in the specific row and column, if present.
      *
      * @param row the row
      * @param column the column
-     * @return the item
+     * @return the item if present
      */
 
     Optional<GuiItem> getItem(int row, int column);
 
     /**
-     * Returns the item stack that is currently found under this inventory.
+     * This method returns an {@link ItemStack} in the specific row and column, if present.
      *
      * @param row the row
      * @param column the column
-     * @return the item
+     * @return the item if present
      */
 
     Optional<ItemStack> getItemStack(int row, int column);
 
     /**
-     * Returns the item stack that is currently found in this slot.
+     * This method returns an {@link ItemStack} in the specific row and column, if present.
+     * <p>
+     * If you want to find an item in the specific row and column, without having to calculate
+     * the slot yourself, use the {@link #getItemStack(int, int)} method, which does this
+     * for you.
      *
-     * @param slot the slot that we want to search
-     * @return the item
+     * @param slot the slot
+     * @return the item if present
      */
 
     Optional<ItemStack> getItemStack(int slot);
 
     /**
-     * Applies a new value of the {@link GuiItem} to a specific row and column.
+     * This method sets a new {@link GuiItem} to a specific row and column.
      *
      * @param row the row
      * @param column the column
@@ -131,19 +140,32 @@ public interface GuiContents {
     void setItem(int row, int column, GuiItem item);
 
     /**
-     * Adds the {@link GuiItem} to the last unused spot of the inventory.
+     * This method creates a new {@link GuiItem} from the specified stack.
      *
-     * @param item the item
+     * @param stack the stack
+     * @return the item created
+     */
+
+    default GuiItem createItem(ItemStack stack) {
+        return GuiItem.newItem(stack);
+    }
+
+    /**
+     * This method adds the specified {@link GuiItem} in the last unused slot
+     * in the inventory.
+     *
+     * @param item the item to add
      */
 
     void addItem(GuiItem item);
 
     /**
-     * This method fills the entire inventory with the item specified in the arguments.
+     * This method fills the entire inventory with the specified item.
      * <p>
-     * We may choose to fill the whole inventory with
+     * By default, the GuiItems are air, and should not be set, unless you need
+     * some different behaviour even from the empty slots.
      *
-     * @param item the item
+     * @param item the item to fill the gui with
      */
 
     void fill(GuiItem item);
@@ -192,6 +214,12 @@ public interface GuiContents {
 
     /**
      * Returns all properties that are associated with this inventory.
+     * <p>
+     * For setting and getting specific properties, check these methods out:
+     * <ul>
+     *     <li>{@link #getProperty(String, Object)}</li>
+     *     <li>{@link #setProperty(String, Object)}</li>
+     * </ul>
      *
      * @return the properties
      */

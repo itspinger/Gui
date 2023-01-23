@@ -7,7 +7,7 @@ import io.pnger.gui.contents.GuiContents;
 import io.pnger.gui.contents.entity.IntelligentInventoryContents;
 import io.pnger.gui.manager.InventoryManager;
 import io.pnger.gui.opener.IntelligentInventoryOpener;
-import io.pnger.gui.provider.InventoryProvider;
+import io.pnger.gui.provider.GuiProvider;
 
 import java.util.Optional;
 
@@ -18,7 +18,7 @@ public class GuiInventory {
     protected boolean closeable;
     protected int rows, columns;
     protected GuiInventory parent;
-    protected final InventoryProvider provider;
+    protected final GuiProvider provider;
     protected final InventoryManager manager;
     protected GuiContents contents;
     protected Inventory inventory;
@@ -34,7 +34,7 @@ public class GuiInventory {
      * @param provider the provider for this inventory
      */
 
-    GuiInventory(InventoryManager manager, InventoryProvider provider) {
+    GuiInventory(InventoryManager manager, GuiProvider provider) {
         this.manager = manager;
         this.provider = provider;
     }
@@ -153,7 +153,7 @@ public class GuiInventory {
      * @return the provider
      */
 
-    public InventoryProvider getProvider() {
+    public GuiProvider getProvider() {
         return provider;
     }
 

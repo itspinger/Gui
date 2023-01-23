@@ -3,7 +3,7 @@ package io.pnger.gui;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
 import io.pnger.gui.manager.InventoryManager;
-import io.pnger.gui.provider.InventoryProvider;
+import io.pnger.gui.provider.GuiProvider;
 
 public final class GuiBuilder {
 
@@ -13,7 +13,7 @@ public final class GuiBuilder {
     private int rows = 6, columns = 9;
     private GuiInventory parent;
 
-    private InventoryProvider provider = null;
+    private GuiProvider provider = null;
     private InventoryManager manager = null;
 
     private GuiBuilder() {}
@@ -47,7 +47,7 @@ public final class GuiBuilder {
         return this;
     }
 
-    public GuiBuilder provider(InventoryProvider provider) {
+    public GuiBuilder provider(GuiProvider provider) {
         this.provider = provider;
         return this;
     }
