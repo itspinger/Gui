@@ -5,7 +5,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import io.pnger.gui.contents.GuiContents;
 import io.pnger.gui.contents.entity.IntelligentInventoryContents;
-import io.pnger.gui.manager.InventoryManager;
+import io.pnger.gui.manager.GuiManager;
 import io.pnger.gui.opener.IntelligentInventoryOpener;
 import io.pnger.gui.provider.GuiProvider;
 
@@ -19,7 +19,7 @@ public class GuiInventory {
     protected int rows, columns;
     protected GuiInventory parent;
     protected final GuiProvider provider;
-    protected final InventoryManager manager;
+    protected final GuiManager manager;
     protected GuiContents contents;
     protected Inventory inventory;
 
@@ -34,7 +34,7 @@ public class GuiInventory {
      * @param provider the provider for this inventory
      */
 
-    GuiInventory(InventoryManager manager, GuiProvider provider) {
+    GuiInventory(GuiManager manager, GuiProvider provider) {
         this.manager = manager;
         this.provider = provider;
     }
@@ -142,7 +142,7 @@ public class GuiInventory {
      * @return the manager
      */
 
-    public InventoryManager getManager() {
+    public GuiManager getManager() {
         return manager;
     }
 

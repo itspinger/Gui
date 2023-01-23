@@ -1,7 +1,7 @@
 package io.pnger.gui.listener;
 
 import io.pnger.gui.item.GuiItem;
-import io.pnger.gui.manager.InventoryManager;
+import io.pnger.gui.manager.GuiManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,11 +14,11 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
 
-public class InventoryListener implements Listener {
+public class GuiListener implements Listener {
 
-    private final InventoryManager manager;
+    private final GuiManager manager;
 
-    public InventoryListener(InventoryManager manager) {
+    public GuiListener(GuiManager manager) {
         this.manager = manager;
     }
 
@@ -27,12 +27,13 @@ public class InventoryListener implements Listener {
         Player p = (Player) event.getPlayer();
 
         // Handle if the inv present
-        this.manager.ifInventoryPresent(p, inv -> {
+        this.manager.handleInventory(p, inv -> {
             if (!inv.isCloseable()) {
-                Bukkit.getScheduler().runTask(this.manager.getPlugin(), () -> {
-                    p.openInventory(event.getInventory());
-                });
-
+                // Don't allow the player to close the inventory
+                // If closable is set to false
+                Bukkit.getScheduler().runTask(this.manager.getPlugin(),
+                    () -> p.openInventory(event.getInventory())
+                );
                 return;
             }
 
@@ -45,11 +46,14 @@ public class InventoryListener implements Listener {
     public void onInventoryDrag(InventoryDragEvent e) {
         Player p = (Player) e.getWhoClicked();
 
-        this.manager.ifInventoryPresent(p, inv -> {
+        this.manager.handleInventory(p, inv -> {
             for (int slot : e.getRawSlots()) {
                 if (slot >= p.getOpenInventory().getTopInventory().getSize())
                     continue;
 
+                // This is not the method to handle drags
+                // So drags that would go outside the bound of this inventory
+                // Are disabled
                 e.setCancelled(true);
                 break;
             }
@@ -58,7 +62,7 @@ public class InventoryListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerQuit(PlayerQuitEvent e) {
-        this.manager.ifInventoryPresent(e.getPlayer(), inv -> this.manager.removePlayer(e.getPlayer()));
+        this.manager.handleInventory(e.getPlayer(), inv -> this.manager.removePlayer(e.getPlayer()));
     }
 
 
@@ -68,18 +72,16 @@ public class InventoryListener implements Listener {
             return;
         }
 
-        new HashMap<>(this.manager.getInventories()).forEach((player, inv) -> {
-            inv.close(Bukkit.getPlayer(player));
-        });
-
-        this.manager.getInventories().clear();
+        // The inventory should only be removed for players
+        // That are handled by the specified plugin from the manager
+        new HashMap<>(this.manager.getInventories()).forEach((player, inv) -> inv.close(Bukkit.getPlayer(player)));
     }
 
     @EventHandler(priority = EventPriority.LOW)
     public void onInventoryClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
 
-        this.manager.ifInventoryPresent(p, inv -> {
+        this.manager.handleInventory(p, inv -> {
             // Restrict putting items from the bottom inventory into the top inventory
             Inventory clickedInventory = e.getClickedInventory();
 
