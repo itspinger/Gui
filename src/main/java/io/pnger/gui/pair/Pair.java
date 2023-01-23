@@ -1,4 +1,4 @@
-package io.pnger.tally.pair;
+package io.pnger.gui.pair;
 
 public interface Pair<K, V> {
 

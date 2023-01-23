@@ -1,9 +1,9 @@
-package io.pnger.tally;
+package io.pnger.gui;
 
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
-import io.pnger.tally.manager.InventoryManager;
-import io.pnger.tally.provider.InventoryProvider;
+import io.pnger.gui.manager.InventoryManager;
+import io.pnger.gui.provider.InventoryProvider;
 
 public final class GuiBuilder {
 

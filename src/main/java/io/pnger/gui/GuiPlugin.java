@@ -1,6 +1,6 @@
-package io.pnger.tally;
+package io.pnger.gui;
 
-import io.pnger.tally.manager.InventoryManager;
+import io.pnger.gui.manager.InventoryManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GuiPlugin extends JavaPlugin {

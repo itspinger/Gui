@@ -1,10 +1,10 @@
-package io.pnger.tally.contents.entity;
+package io.pnger.gui.contents.entity;
 
 import com.google.common.collect.Lists;
-import io.pnger.tally.GuiInventory;
-import io.pnger.tally.slot.InventorySlotIterator;
-import io.pnger.tally.contents.IteratorType;
-import io.pnger.tally.item.GuiItem;
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.slot.InventorySlotIterator;
+import io.pnger.gui.contents.IteratorType;
+import io.pnger.gui.item.GuiItem;
 
 import java.util.AbstractMap;
 import java.util.List;

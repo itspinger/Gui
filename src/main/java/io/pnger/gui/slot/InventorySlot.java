@@ -1,6 +1,6 @@
-package io.pnger.tally.slot;
+package io.pnger.gui.slot;
 
-import io.pnger.tally.pair.Pair;
+import io.pnger.gui.pair.Pair;
 
 /**
  * This type represents an inventory slot in the inventory. It holds the most basic

@@ -1,7 +1,7 @@
-package io.pnger.tally.opener;
+package io.pnger.gui.opener;
 
 import com.google.common.base.Preconditions;
-import io.pnger.tally.GuiInventory;
+import io.pnger.gui.GuiInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;

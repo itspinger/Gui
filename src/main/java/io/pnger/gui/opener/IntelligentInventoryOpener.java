@@ -1,11 +1,11 @@
-package io.pnger.tally.opener;
+package io.pnger.gui.opener;
 
-import io.pnger.tally.GuiInventory;
-import io.pnger.tally.item.GuiItem;
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.item.GuiItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import io.pnger.tally.contents.GuiContents;
+import io.pnger.gui.contents.GuiContents;
 
 public interface IntelligentInventoryOpener {
 

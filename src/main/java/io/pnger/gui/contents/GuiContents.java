@@ -1,9 +1,9 @@
-package io.pnger.tally.contents;
+package io.pnger.gui.contents;
 
-import io.pnger.tally.GuiInventory;
-import io.pnger.tally.item.GuiItem;
-import io.pnger.tally.pagination.GuiPagination;
-import io.pnger.tally.slot.InventorySlotIterator;
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.item.GuiItem;
+import io.pnger.gui.pagination.GuiPagination;
+import io.pnger.gui.slot.InventorySlotIterator;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 

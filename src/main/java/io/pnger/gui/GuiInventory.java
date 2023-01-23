@@ -1,13 +1,13 @@
-package io.pnger.tally;
+package io.pnger.gui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import io.pnger.tally.contents.GuiContents;
-import io.pnger.tally.contents.entity.IntelligentInventoryContents;
-import io.pnger.tally.manager.InventoryManager;
-import io.pnger.tally.opener.IntelligentInventoryOpener;
-import io.pnger.tally.provider.InventoryProvider;
+import io.pnger.gui.contents.GuiContents;
+import io.pnger.gui.contents.entity.IntelligentInventoryContents;
+import io.pnger.gui.manager.InventoryManager;
+import io.pnger.gui.opener.IntelligentInventoryOpener;
+import io.pnger.gui.provider.InventoryProvider;
 
 import java.util.Optional;
 
