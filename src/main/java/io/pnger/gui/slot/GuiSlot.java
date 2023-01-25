@@ -10,12 +10,12 @@ import io.pnger.gui.pair.Pair;
  * @author Pinger
  */
 
-public class InventorySlot implements Pair<Integer, Integer> {
+public class GuiSlot implements Pair<Integer, Integer> {
 
     private final int row;
     private final int column;
 
-    public InventorySlot(int row, int column) {
+    public GuiSlot(int row, int column) {
         this.row = row;
         this.column = column;
     }
@@ -41,7 +41,7 @@ public class InventorySlot implements Pair<Integer, Integer> {
             return false;
         }
 
-        InventorySlot that = (InventorySlot) o;
+        GuiSlot that = (GuiSlot) o;
         return this.row == that.row && this.column == that.column;
     }
 

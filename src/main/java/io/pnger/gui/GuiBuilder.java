@@ -38,7 +38,8 @@ public final class GuiBuilder {
     }
 
     public GuiBuilder size(int rows, int columns) {
-        this.rows = rows; this.columns = columns;
+        this.rows = rows;
+        this.columns = columns;
         return this;
     }
 
