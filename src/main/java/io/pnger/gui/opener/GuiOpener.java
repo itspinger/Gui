@@ -7,7 +7,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import io.pnger.gui.contents.GuiContents;
 
-public interface IntelligentInventoryOpener {
+public interface GuiOpener {
 
     /**
      * This method tries to open an intelligent inventory to the specified player.
@@ -29,7 +29,8 @@ public interface IntelligentInventoryOpener {
     boolean isSupported(InventoryType type);
 
     /**
-     * This method is used to fill an inventory with the contents that are defined inside the {@link GuiContents} object.
+     * This method is used to fill an inventory with the contents
+     * that are defined inside the {@link GuiContents} object.
      *
      * @param handle the inventory that is being filled up
      * @param contents the contents of the inventory
@@ -40,8 +41,9 @@ public interface IntelligentInventoryOpener {
 
         for(int row = 0; row < items.length; row++) {
             for(int column = 0; column < items[row].length; column++) {
-                if(items[row][column] != null)
+                if(items[row][column] != null) {
                     handle.setItem(9 * row + column, items[row][column].getItem());
+                }
             }
         }
     }

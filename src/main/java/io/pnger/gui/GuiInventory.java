@@ -4,9 +4,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import io.pnger.gui.contents.GuiContents;
-import io.pnger.gui.contents.entity.IntelligentInventoryContents;
+import io.pnger.gui.internal.GuiContentsImpl;
 import io.pnger.gui.manager.GuiManager;
-import io.pnger.gui.opener.IntelligentInventoryOpener;
+import io.pnger.gui.opener.GuiOpener;
 import io.pnger.gui.provider.GuiProvider;
 
 import java.util.Optional;
@@ -79,7 +79,7 @@ public class GuiInventory {
         // First close the old inventory
         this.close(player);
 
-        GuiContents contents = new IntelligentInventoryContents(this, player.getUniqueId());
+        GuiContents contents = new GuiContentsImpl(this, player.getUniqueId());
         contents.getPagination().setPage(page);
 
         // Assign it
@@ -92,7 +92,7 @@ public class GuiInventory {
                 return null;
             }
 
-            IntelligentInventoryOpener opener = this.manager.findOpener(this.type)
+            GuiOpener opener = this.manager.findOpener(this.type)
                     .orElseThrow(() -> new IllegalArgumentException("No openers found for this inventory type: " + this.type.name()));
             Inventory inv = opener.open(player, this);
 

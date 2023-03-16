@@ -1,38 +1,43 @@
-package io.pnger.gui.contents.entity;
+package io.pnger.gui.internal;
 
 import com.google.common.collect.Maps;
 import io.pnger.gui.GuiInventory;
 import io.pnger.gui.contents.GuiContents;
-import io.pnger.gui.pagination.GuiPagination;
-import io.pnger.gui.slot.InventorySlotIterator;
-import io.pnger.gui.contents.IteratorType;
+import io.pnger.gui.slot.GuiIteratorType;
 import io.pnger.gui.item.GuiItem;
+import io.pnger.gui.pagination.GuiPagination;
+import io.pnger.gui.slot.GuiSlotIterator;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public class IntelligentInventoryContents implements GuiContents {
+public class GuiContentsImpl implements GuiContents {
 
     private final UUID id;
     private final GuiInventory inventory;
 
-    private final Map<Object, Object> properties = Maps.newConcurrentMap();
-    private final Map<String, InventorySlotIterator> iterators = Maps.newConcurrentMap();
+    private final Map<String, Object> properties;
+    private final Map<String, GuiSlotIterator> iterators;
 
     private final GuiItem[][] items;
-    private final GuiPagination pagination = new IntelligentInventoryPagination();
+    private final GuiPagination pagination;
 
-    public IntelligentInventoryContents(GuiInventory inventory, UUID id) {
+    public GuiContentsImpl(GuiInventory inventory, UUID id) {
         this.id = id;
         this.inventory = inventory;
+        this.properties = Maps.newConcurrentMap();
+        this.iterators = Maps.newConcurrentMap();
         this.items = new GuiItem[inventory.getRows()][inventory.getColumns()];
+        this.pagination = new GuiPaginationImpl();
     }
 
+    @Nonnull
     @Override
     public GuiInventory getInventory() {
         return this.inventory;
@@ -49,13 +54,13 @@ public class IntelligentInventoryContents implements GuiContents {
     }
 
     @Override
-    public InventorySlotIterator newIterator(String id, IteratorType type, int startRow, int startColumn) {
-        return this.iterators.put(id, new IntelligentSlotIterator(this.inventory, type, startRow, startColumn));
+    public GuiSlotIterator newIterator(String id, GuiIteratorType type, int startRow, int startColumn) {
+        return this.iterators.put(id, new GuiSlotIteratorImpl(this.inventory, type, startRow, startColumn));
     }
 
     @Override
-    public InventorySlotIterator newIterator(IteratorType type, int startRow, int startColumn) {
-        return new IntelligentSlotIterator(this.inventory, type, startRow, startColumn);
+    public GuiSlotIterator newIterator(GuiIteratorType type, int startRow, int startColumn) {
+        return new GuiSlotIteratorImpl(this.inventory, type, startRow, startColumn);
     }
 
     @Override
@@ -133,7 +138,7 @@ public class IntelligentInventoryContents implements GuiContents {
     }
 
     @Override
-    public Map<Object, Object> getProperties() {
+    public Map<String, Object> getProperties() {
         return this.properties;
     }
 

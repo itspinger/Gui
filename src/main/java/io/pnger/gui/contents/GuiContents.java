@@ -3,7 +3,8 @@ package io.pnger.gui.contents;
 import io.pnger.gui.GuiInventory;
 import io.pnger.gui.item.GuiItem;
 import io.pnger.gui.pagination.GuiPagination;
-import io.pnger.gui.slot.InventorySlotIterator;
+import io.pnger.gui.slot.GuiIteratorType;
+import io.pnger.gui.slot.GuiSlotIterator;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
 /**
  * This type holds all contents of a {@link GuiInventory}.
  * <p>
- * When updating items in the inventory, creating new {@link InventorySlotIterator iterators}, or
+ * When updating items in the inventory, creating new {@link GuiSlotIterator iterators}, or
  * assigning property to a provider, this interface should be used.
  * <p>
  * This interface is persistent over every inventory, meaning that it's
@@ -83,7 +84,7 @@ public interface GuiContents {
      * @return the iterator
      */
 
-    InventorySlotIterator newIterator(String id, IteratorType type, int startRow, int startColumn);
+    GuiSlotIterator newIterator(String id, GuiIteratorType type, int startRow, int startColumn);
 
     /**
      * This method creates a new iterator with the specified iterator type and starting position.
@@ -94,7 +95,7 @@ public interface GuiContents {
      * @return the iterator
      */
 
-    InventorySlotIterator newIterator(IteratorType type, int startRow, int startColumn);
+    GuiSlotIterator newIterator(GuiIteratorType type, int startRow, int startColumn);
 
     /**
      * This method returns a {@link GuiItem} in the specific row and column, if present.
@@ -147,7 +148,7 @@ public interface GuiContents {
      */
 
     default GuiItem createItem(ItemStack stack) {
-        return GuiItem.newItem(stack);
+        return GuiItem.of(stack);
     }
 
     /**
@@ -224,6 +225,6 @@ public interface GuiContents {
      * @return the properties
      */
 
-    Map<Object, Object> getProperties();
+    Map<String, Object> getProperties();
 
 }

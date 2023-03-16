@@ -15,9 +15,17 @@ public class GuiSlot implements Pair<Integer, Integer> {
     private final int row;
     private final int column;
 
-    public GuiSlot(int row, int column) {
+    private GuiSlot(int row, int column) {
         this.row = row;
         this.column = column;
+    }
+
+    public static GuiSlot of(int row, int column) {
+        return new GuiSlot(row, column);
+    }
+
+    public static GuiSlot of(int index) {
+        return GuiSlot.of(index / 9, index % 9);
     }
 
     @Override
@@ -37,7 +45,7 @@ public class GuiSlot implements Pair<Integer, Integer> {
         }
 
         // If the classes aren't equal return false
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
 

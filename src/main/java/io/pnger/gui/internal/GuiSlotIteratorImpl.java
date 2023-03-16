@@ -1,33 +1,34 @@
-package io.pnger.gui.contents.entity;
+package io.pnger.gui.internal;
 
-import com.google.common.collect.Lists;
 import io.pnger.gui.GuiInventory;
-import io.pnger.gui.slot.InventorySlotIterator;
-import io.pnger.gui.contents.IteratorType;
+import io.pnger.gui.slot.GuiIteratorType;
 import io.pnger.gui.item.GuiItem;
+import io.pnger.gui.slot.GuiSlot;
+import io.pnger.gui.slot.GuiSlotIterator;
 
-import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class IntelligentSlotIterator implements InventorySlotIterator {
+public class GuiSlotIteratorImpl implements GuiSlotIterator {
 
     private final GuiInventory inventory;
-    private final IteratorType type;
+    private final GuiIteratorType type;
 
     private int row, column;
     private boolean override = true, started;
 
-    private final List<AbstractMap.SimpleEntry<Integer, Integer>> blacklisted = Lists.newArrayList();
+    private final List<GuiSlot> blacklisted;
 
-    public IntelligentSlotIterator(GuiInventory inventory, IteratorType type, int row, int column) {
+    public GuiSlotIteratorImpl(GuiInventory inventory, GuiIteratorType type, int row, int column) {
         this.inventory = inventory;
         this.type = type;
         this.row = row;
         this.column = column;
+        this.blacklisted = new ArrayList<>();
     }
 
-    public IntelligentSlotIterator(GuiInventory inventory, IteratorType type) {
+    public GuiSlotIteratorImpl(GuiInventory inventory, GuiIteratorType type) {
         this(inventory, type, 0, 0);
     }
 
@@ -53,12 +54,12 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
 
     @Override
     public Optional<GuiItem> getItem() {
-        return this.inventory.getContents().getItem(row, column);
+        return this.inventory.getContents().getItem(this.row, this.column);
     }
 
     @Override
-    public InventorySlotIterator setItem(GuiItem item) {
-        if (!canPlace())
+    public GuiSlotIterator setItem(GuiItem item) {
+        if (!this.canPlace())
             return this;
 
         this.inventory.getContents().setItem(this.row, this.column, item);
@@ -66,8 +67,8 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
     }
 
     @Override
-    public InventorySlotIterator next() {
-        if (isLast()) {
+    public GuiSlotIterator next() {
+        if (this.isLast()) {
             this.started = true;
             return this;
         }
@@ -78,26 +79,27 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
             }
 
             else {
-                switch (type) {
+                switch (this.type) {
                     case HORIZONTAL:
-                        column = ++column % inventory.getColumns();
-                        if (column == 0)
-                            row++;
+                        this.column = ++this.column % this.inventory.getColumns();
+                        if (this.column == 0)
+                            this.row++;
                         break;
                     case VERTICAL:
-                        row = ++row % inventory.getRows();
-                        if (row == 0)
-                            column++;
+                        this.row = ++this.row % this.inventory.getRows();
+                        if (this.row == 0)
+                            this.column++;
                         break;
                 }
             }
-        } while (!canPlace() && !isLast());
+        } while (!this.canPlace() && !this.isLast());
+        
         return this;
     }
 
     @Override
-    public InventorySlotIterator previous() {
-        if (row == 0 && column == 0) {
+    public GuiSlotIterator previous() {
+        if (this.row == 0 && this.column == 0) {
             this.started = true;
             return this;
         }
@@ -108,40 +110,40 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
             } else {
                 switch (type) {
                     case HORIZONTAL:
-                        column--;
-                        if (column == 0) {
-                            column = inventory.getColumns() - 1;
-                            row--;
+                        this.column--;
+                        if (this.column == 0) {
+                            this.column = this.inventory.getColumns() - 1;
+                            this.row--;
                         }
                         break;
                     case VERTICAL:
-                        row--;
-                        if (row == 0) {
-                            row = inventory.getRows() - 1;
-                            column--;
+                        this.row--;
+                        if (this.row == 0) {
+                            this.row = this.inventory.getRows() - 1;
+                            this.column--;
                         }
                 }
             }
-        } while (!canPlace() && (row != 0 || column != 0));
+        } while (!this.canPlace() && (this.row != 0 || this.column != 0));
         return this;
     }
 
     @Override
     public void blacklist(int row, int column) {
-        this.blacklisted.add(new AbstractMap.SimpleEntry<>(row, column));
+        this.blacklisted.add(GuiSlot.of(row, column));
     }
 
     @Override
     public void blacklistRow(int row) {
         for (int i = 0; i < this.inventory.getColumns(); i++) {
-            this.blacklisted.add(new AbstractMap.SimpleEntry<>(row, i));
+            this.blacklisted.add(GuiSlot.of(row, i));
         }
     }
 
     @Override
     public void blacklistColumn(int column) {
         for (int i = 0; i < this.inventory.getRows(); i++) {
-            this.blacklisted.add(new AbstractMap.SimpleEntry<>(i, column));
+            this.blacklisted.add(GuiSlot.of(i, this.row));
         }
     }
 
@@ -157,13 +159,12 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
 
     @Override
     public boolean isLast() {
-        return row == this.inventory.getRows() - 1
-                && column == this.inventory.getColumns() - 1;
+        return this.row == this.inventory.getRows() - 1 && this.column == this.inventory.getColumns() - 1;
     }
 
     private boolean isBlacklisted(int row, int column) {
-        for (AbstractMap.SimpleEntry<Integer, Integer> entry : this.blacklisted) {
-            if (entry.getKey() == row && entry.getValue() == column)
+        for (GuiSlot slot : this.blacklisted) {
+            if (slot.getKey() == row && slot.getValue() == column)
                 return true;
         }
 
@@ -171,6 +172,6 @@ public class IntelligentSlotIterator implements InventorySlotIterator {
     }
 
     private boolean canPlace() {
-        return !isBlacklisted(row, column) && (this.override || this.getItem().isPresent());
+        return !this.isBlacklisted(this.row, this.column) && (this.override || this.getItem().isPresent());
     }
 }

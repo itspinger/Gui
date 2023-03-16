@@ -2,7 +2,7 @@ package io.pnger.gui.internal;
 
 import io.pnger.gui.item.GuiItem;
 import io.pnger.gui.pagination.GuiPagination;
-import io.pnger.gui.slot.InventorySlotIterator;
+import io.pnger.gui.slot.GuiSlotIterator;
 
 import java.util.Arrays;
 
@@ -13,8 +13,15 @@ public class GuiPaginationImpl implements GuiPagination {
     private GuiItem[] items = new GuiItem[0];
 
     @Override
-    public GuiPagination addToIterator(InventorySlotIterator iterator) {
-        // TODO: add this functionality
+    public GuiPagination addToIterator(GuiSlotIterator iterator) {
+        for (GuiItem item : this.getItemsInPage()) {
+            iterator.next().setItem(item);
+
+            if (iterator.isLast()) {
+                break;
+            }
+        }
+
         return this;
     }
 
