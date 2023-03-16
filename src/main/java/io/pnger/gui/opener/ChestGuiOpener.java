@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-public class ChestInventoryOpener implements IntelligentInventoryOpener {
+public class ChestGuiOpener implements GuiOpener {
 
     @Override
     public Inventory open(Player player, GuiInventory inventory) {

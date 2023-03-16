@@ -18,7 +18,7 @@ import java.util.Optional;
  *
  */
 
-public interface InventorySlotIterator {
+public interface GuiSlotIterator {
 
     /**
      * Returns the current row of the slot iterator.
@@ -70,7 +70,7 @@ public interface InventorySlotIterator {
      * @return the slot iterator
      */
 
-    InventorySlotIterator setItem(GuiItem item);
+    GuiSlotIterator setItem(GuiItem item);
 
     /**
      * This method increases the iterator by one.
@@ -78,7 +78,7 @@ public interface InventorySlotIterator {
      * @return the iterator
      */
 
-    InventorySlotIterator next();
+    GuiSlotIterator next();
 
     /**
      * This method decreases the iterator by one.
@@ -86,7 +86,7 @@ public interface InventorySlotIterator {
      * @return the iterator
      */
 
-    InventorySlotIterator previous();
+    GuiSlotIterator previous();
 
     /**
      * This method blacklists a certain position, so it is skipped by the iterator.

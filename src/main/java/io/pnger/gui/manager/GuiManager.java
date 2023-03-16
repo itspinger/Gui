@@ -2,20 +2,25 @@ package io.pnger.gui.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import io.pnger.gui.GuiInventory;
+import io.pnger.gui.listener.GuiListener;
+import io.pnger.gui.opener.ChestGuiOpener;
+import io.pnger.gui.opener.GuiOpener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import io.pnger.gui.GuiInventory;
-import io.pnger.gui.listener.GuiListener;
-import io.pnger.gui.opener.ChestInventoryOpener;
-import io.pnger.gui.opener.IntelligentInventoryOpener;
-import io.pnger.gui.opener.SpecialInventoryOpener;
-
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public class GuiManager {
@@ -24,14 +29,13 @@ public class GuiManager {
 
     private final JavaPlugin plugin;
     private final Map<UUID, GuiInventory> inventories = Maps.newHashMap();
-
-    // Openers
-    private final List<IntelligentInventoryOpener> openers =
-            Lists.newArrayList(new ChestInventoryOpener(), new SpecialInventoryOpener());
+    private final List<GuiOpener> openers;
 
     public GuiManager(@Nonnull JavaPlugin plugin) {
         Objects.requireNonNull(plugin, "Plugin must not be null.");
+
         this.plugin = plugin;
+        this.openers = new ArrayList<>(Collections.singletonList(new ChestGuiOpener()));
 
         // Register the event
         Bukkit.getPluginManager().registerEvents(new GuiListener(this), plugin);
@@ -110,10 +114,31 @@ public class GuiManager {
      * @return the inventory opener
      */
 
-    public Optional<IntelligentInventoryOpener> findOpener(InventoryType type) {
+    public Optional<GuiOpener> findOpener(InventoryType type) {
         return this.openers.stream()
                 .filter(opener -> opener.isSupported(type))
                 .findAny();
+    }
+
+    /**
+     * This method registers the specified gui opener.
+     *
+     * @param opener the opener
+     */
+
+    public void registerOpener(GuiOpener opener) {
+        this.openers.add(opener);
+    }
+
+    /**
+     * This method unregisters the opener with the specified
+     * classifier.
+     *
+     * @param classifier the classifier
+     */
+
+    public void unregisterOpener(Class<? extends GuiOpener> classifier) {
+        this.openers.removeIf(opener -> classifier.isAssignableFrom(opener.getClass()));
     }
 
     /**

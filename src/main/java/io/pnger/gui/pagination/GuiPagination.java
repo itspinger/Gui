@@ -2,7 +2,7 @@ package io.pnger.gui.pagination;
 
 import io.pnger.gui.contents.GuiContents;
 import io.pnger.gui.item.GuiItem;
-import io.pnger.gui.slot.InventorySlotIterator;
+import io.pnger.gui.slot.GuiSlotIterator;
 
 /**
  * This type is used for placing x amount of items in an inventory,
@@ -11,7 +11,7 @@ import io.pnger.gui.slot.InventorySlotIterator;
  * This interface handles all stuff mentioned above. The methods to look for are:
  * <ul>
  *     <li>{@link #setItems(int, GuiItem...)} - which will add all items to the pagination handle, and where you limit how many of these you want per page</li>
- *     <li>{@link #addToIterator(InventorySlotIterator)} - to set from which slot this iterator will start</li>
+ *     <li>{@link #addToIterator(GuiSlotIterator)} - to set from which slot this iterator will start</li>
  * </ul>
  *
  * @since 2.0
@@ -31,7 +31,7 @@ public interface GuiPagination {
      * @return this pagination
      */
 
-    GuiPagination addToIterator(InventorySlotIterator iterator);
+    GuiPagination addToIterator(GuiSlotIterator iterator);
 
     /**
      * This method sets items that will be paginated through this pagination

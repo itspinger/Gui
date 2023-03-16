@@ -44,7 +44,7 @@ public class GuiItem {
      * @return the instance
      */
 
-    public static GuiItem newItem(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
+    public static GuiItem of(ItemStack item, Consumer<InventoryClickEvent> event, boolean drag) {
         return new GuiItem(item, event, drag);
     }
 
@@ -56,7 +56,7 @@ public class GuiItem {
      * @return the item
      */
 
-    public static GuiItem newItem(ItemStack item, Consumer<InventoryClickEvent> event) {
+    public static GuiItem of(ItemStack item, Consumer<InventoryClickEvent> event) {
         return new GuiItem(item, event, false);
     }
 
@@ -67,7 +67,7 @@ public class GuiItem {
      * @return the item
      */
 
-    public static GuiItem newItem(ItemStack item) {
+    public static GuiItem of(ItemStack item) {
         return new GuiItem(item, e -> {}, false);
     }
 
@@ -79,7 +79,7 @@ public class GuiItem {
      * @return the item
      */
 
-    public static GuiItem newItem(ItemStack item, boolean drag) {
+    public static GuiItem of(ItemStack item, boolean drag) {
         return new GuiItem(item, e -> {}, drag);
     }
 
