@@ -143,7 +143,7 @@ public class GuiSlotIteratorImpl implements GuiSlotIterator {
     @Override
     public void blacklistColumn(int column) {
         for (int i = 0; i < this.inventory.getRows(); i++) {
-            this.blacklisted.add(GuiSlot.of(i, this.row));
+            this.blacklisted.add(GuiSlot.of(i, column));
         }
     }
 
