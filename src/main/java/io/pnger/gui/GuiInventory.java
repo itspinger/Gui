@@ -48,8 +48,9 @@ public class GuiInventory {
      */
 
     public Inventory open(Object o, int page) {
-        if (!(o instanceof Player))
+        if (!(o instanceof Player)) {
             throw new IllegalArgumentException("Inventories may only be opened to players.");
+        }
 
         return this.open((Player) o, page);
     }
@@ -62,8 +63,9 @@ public class GuiInventory {
      */
 
     public Inventory open(Object o) {
-        if (!(o instanceof Player))
+        if (!(o instanceof Player)) {
             throw new IllegalArgumentException("Inventories may only be opened to players.");
+        }
 
         return this.open((Player) o);
     }
@@ -77,7 +79,7 @@ public class GuiInventory {
 
     public Inventory open(Player player, int page) {
         // First close the old inventory
-        this.close(player);
+        this.close(player, false);
 
         GuiContents contents = new GuiContentsImpl(this, player.getUniqueId());
         contents.getPagination().setPage(page);
@@ -114,6 +116,15 @@ public class GuiInventory {
         return this.open(player, 0);
     }
 
+    public void close(Player player, boolean forceClose) {
+        this.manager.removePlayer(player);
+        this.contents = null;
+
+        if (forceClose) {
+            player.closeInventory();
+        }
+    }
+
     /**
      * This method closes an intelligent inventory for a specific player.
      *
@@ -121,9 +132,7 @@ public class GuiInventory {
      */
 
     public void close(Player player) {
-        this.manager.removePlayer(player);
-        this.contents = null;
-        player.closeInventory();
+        this.close(player, true);
     }
 
     /**
