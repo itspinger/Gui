@@ -10,13 +10,8 @@ import java.util.function.Consumer;
 
 public class GuiItem {
 
-    // The item that is handling the event
     private final ItemStack item;
-
-    // The event happening when the player clicks the item
     private Consumer<InventoryClickEvent> click;
-
-    // Whether a player may be to drag something to this slot, by default false.
     private boolean drag;
 
     /**
@@ -100,7 +95,7 @@ public class GuiItem {
      */
 
     public ItemStack getItem() {
-        return item;
+        return this.item;
     }
 
     /**
@@ -133,6 +128,6 @@ public class GuiItem {
      */
 
     public boolean isDrag() {
-        return drag;
+        return this.drag;
     }
 }

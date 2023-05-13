@@ -182,6 +182,6 @@ public class GuiManager {
      */
 
     public Map<UUID, GuiInventory> getInventories() {
-        return inventories;
+        return this.inventories;
     }
 }

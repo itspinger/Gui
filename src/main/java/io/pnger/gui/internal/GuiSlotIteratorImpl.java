@@ -59,8 +59,9 @@ public class GuiSlotIteratorImpl implements GuiSlotIterator {
 
     @Override
     public GuiSlotIterator setItem(GuiItem item) {
-        if (!this.canPlace())
+        if (!this.canPlace()) {
             return this;
+        }
 
         this.inventory.getContents().setItem(this.row, this.column, item);
         return this;
@@ -163,9 +164,14 @@ public class GuiSlotIteratorImpl implements GuiSlotIterator {
     }
 
     private boolean isBlacklisted(int row, int column) {
+        // Construct the slot of the row and column
+        GuiSlot gs = GuiSlot.of(row, column);
+
+        // Check if it's blacklisted
         for (GuiSlot slot : this.blacklisted) {
-            if (slot.getKey() == row && slot.getValue() == column)
+            if (slot.equals(gs)) {
                 return true;
+            }
         }
 
         return false;

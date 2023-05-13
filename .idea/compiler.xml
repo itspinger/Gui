@@ -7,8 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tally" />
-        <module name="IntelligentInventories" />
+        <module name="gui" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="IntelligentInventories" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>

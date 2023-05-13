@@ -5,16 +5,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class GuiPlugin extends JavaPlugin {
 
-    private GuiManager intelligentManager;
+    private GuiManager manager;
 
     @Override
     public void onEnable() {
-        this.getLogger().info("Tally is enabled successfully. Will try to enable the tally manager now.");
-        this.intelligentManager = new GuiManager(this);
-        this.getLogger().info("Successfully enabled Tally. You can now manage your inventories");
+        this.manager = new GuiManager(this);
     }
 
-    public GuiManager getIntelligentManager() {
-        return intelligentManager;
+    public GuiManager getManager() {
+        return this.manager;
     }
 }
