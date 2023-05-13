@@ -18,7 +18,7 @@ public final class GuiBuilder {
 
     private GuiBuilder() {}
 
-    public static GuiBuilder newBuilder() {
+    public static GuiBuilder of() {
         return new GuiBuilder();
     }
 
