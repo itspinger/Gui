@@ -17,6 +17,7 @@ public class GuiPaginationImpl implements GuiPagination {
         for (GuiItem item : this.getItemsInPage()) {
             iterator.next().setItem(item);
 
+            // Escape if it is the last slot in the iterator
             if (iterator.isLast()) {
                 break;
             }
@@ -28,7 +29,7 @@ public class GuiPaginationImpl implements GuiPagination {
     @Override
     public GuiPagination setItems(int itemsPerPage, GuiItem... items) {
         if (itemsPerPage == 0) {
-            throw new IllegalArgumentException("Cannot set itemsPerPage to 0");
+            throw new IllegalArgumentException("Cannot set items to 0");
         }
 
         this.itemsPerPage = itemsPerPage;

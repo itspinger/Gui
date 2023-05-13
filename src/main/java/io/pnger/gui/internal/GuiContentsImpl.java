@@ -113,11 +113,13 @@ public class GuiContentsImpl implements GuiContents {
 
     @Override
     public void fillRow(int row, GuiItem item) {
-        if (row >= items.length)
+        if (row >= this.items.length) {
             return;
+        }
 
-        for (int column = 0; column < this.items[row].length; column++)
+        for (int column = 0; column < this.items[row].length; column++) {
             this.setItem(row, column, item);
+        }
     }
 
     @Override
@@ -145,8 +147,9 @@ public class GuiContentsImpl implements GuiContents {
     private void update(int row, int column, ItemStack item) {
         Player player = Bukkit.getPlayer(this.id);
 
-        if (!this.inventory.getManager().getOpened(this.inventory).contains(player))
+        if (!this.inventory.getManager().getOpened(this.inventory).contains(player)) {
             return;
+        }
 
         Inventory topInventory = player.getOpenInventory().getTopInventory();
         topInventory.setItem(this.inventory.getColumns() * row + column, item);

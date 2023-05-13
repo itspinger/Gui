@@ -61,7 +61,7 @@ public final class GuiBuilder {
     public GuiInventory build() {
         // Manager and provider must both be non-null
         GuiManager manager = this.manager == null ?
-                JavaPlugin.getPlugin(GuiPlugin.class).getIntelligentManager() : this.manager;
+                JavaPlugin.getPlugin(GuiPlugin.class).getManager() : this.manager;
 
         if (manager == null)
             throw new IllegalArgumentException("The InventoryManager may not be null, make sure to initialize it");
