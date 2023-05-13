@@ -94,14 +94,14 @@ public class CarrotProvider implements GuiProvider {
         // The initialize method is called when the inventory is first opened for the player
         // Here we want to fill the whole inventory with CYAN_STAINED_GLASS_PANE
 
-        // An IntelligentItem is an object which is used to handle inventory clicks
-        // Although not all IntelligentItems need to handle them, like this one
+        // A GuiItem is an object which is used to handle inventory clicks
+        // Although not all GuiItem's need to handle them, like this one
         GuiItem item = GuiItem.of(new ItemStack(Material.CYAN_STAINED_GLASS_PANE));
 
         // Fill the whole inventory
         contents.fill(item);
 
-        // Calling IntelligentItem.createNew(ItemStack, boolean) where the boolean is true
+        // Calling GuiItem.of(ItemStack, boolean) where the boolean is true
         // will allow for any item to be dragged into this slot
         GuiItem empty = GuiItem.of(new ItemStack(Material.AIR), true);
         contents.setItem(2, 4, empty);
