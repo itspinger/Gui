@@ -31,7 +31,7 @@ public class ChestGuiOpener implements GuiOpener {
             throw new IllegalArgumentException("The number of columns must be 9!");
         }
 
-        if (gui.getRows() < 1 || gui.getColumns() > 6) {
+        if (gui.getRows() < 1 || gui.getRows() > 6) {
             throw new IllegalArgumentException("The number of rows must be between 1 and 6!");
         }
     }
