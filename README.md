@@ -1,5 +1,5 @@
 # Gui
-An improved version of SmartInventories that manages Minecraft Inventories quickly and easily.
+An improved version of SmartInventories that manages Minecraft Inventories quickly and easily
 
 ## What exactly is the Gui plugin?
 **Gui** is a library written in Java which is designed to remove the need for bothering \
